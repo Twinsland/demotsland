@@ -1,0 +1,89 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(#e0f7fa, #fff);
+    margin: 0;
+    padding: 2rem;
+    text-align: center;
+}
+
+#carte-container {
+    margin-top: 2rem;
+}
+
+#ville-select {
+    padding: 10px;
+    font-size: 16px;
+}
+
+#carte {
+    margin-top: 20px;
+    border: 2px dashed #00796b;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #444;
+}
+
+#map {
+    height: 300px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+}
+
+
+/* Style pour le lecteur de musique */
+.music-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    padding: 10px 15px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #fff;
+    transition: transform 0.3s ease;
+}
+
+.music-player:hover {
+    transform: scale(1.05);
+}
+
+.music-player audio {
+    display: none;
+}
+
+.player-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.player-info span {
+    font-size: 14px;
+}
+
+.player-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.player-controls button {
+    background-color: #444;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.player-controls button:hover {
+    background-color: #888;
+}
+
+.player-controls button:disabled {
+    background-color: #777;
+}
