@@ -12,45 +12,33 @@ fetch('./data/villes.json')
     });
 
     select.addEventListener("change", () => {
-      const villeChoisie = data.find(v => v.nom === select.value);
-      if (villeChoisie) {
+    const villeChoisie = data.find(v => v.nom === select.value);
+
+    if (villeChoisie) {
         carte.innerHTML = `
-          <strong>${villeChoisie.nom}</strong><br>
-          Population: ${villeChoisie.population}<br>
-          Description: ${villeChoisie.description}
+            <strong>${villeChoisie.nom}</strong><br>
+            Population: ${villeChoisie.population}<br>
+            Description: ${villeChoisie.description}
         `;
-      } else {
+
+        if (window.mapInstance) {
+            window.mapInstance.remove();
+        }
+
+        window.mapInstance = L.map('map').setView([villeChoisie.lat, villeChoisie.lng], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(window.mapInstance);
+
+        L.marker([villeChoisie.lat, villeChoisie.lng])
+            .addTo(window.mapInstance)
+            .bindPopup(`<b>${villeChoisie.nom}</b><br>${villeChoisie.description}`)
+            .openPopup();
+    } else {
         carte.textContent = "Sélectionnez une ville pour voir les détails.";
-      }
-      
-      let map;
-
-...
-
-if (map) {
-  map.remove();
-}
-map = L.map('map')...
-
-}
-
-const map = L.map('map').setView([villeChoisie.lat, villeChoisie.lng], 13);
-
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© OpenStreetMap contributors'
-}).addTo(map);
-
-L.marker([villeChoisie.lat, villeChoisie.lng])
-  .addTo(map)
-  .bindPopup(`<b>${villeChoisie.nom}</b><br>${villeChoisie.description}`)
-  .openPopup();
-
-    });
-  })
-  .catch(error => {
-    carte.textContent = "Erreur de chargement des données.";
-    console.error(error);
-  });
+    }
+});
 const musics = [
   'assets/musics/sagbohan1.mp3',
   'assets/musics/kidjo1.mp3',
