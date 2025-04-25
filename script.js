@@ -38,6 +38,11 @@ fetch('./data/villes.json')
     } else {
         carte.textContent = "Sélectionnez une ville pour voir les détails.";
     }
+      .catch(error => {
+    carte.textContent = "Erreur de chargement des données. Veuillez réessayer.";
+    console.error("Erreur fetch villes.json :", error);
+});
+
 });
 const musics = [
   'assets/musics/sagbohan1.mp3',
