@@ -115,3 +115,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadTrack(currentTrack); // Initialisation
 });
+
+fetch('./data/villes.json')
