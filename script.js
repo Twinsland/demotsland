@@ -1,12 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const map = L.map('map').setView([7.5, 2.5], 7); // Centré sur le Bénin
+    const map = L.map('map').setView([7.5, 2.5], 7);
 
-    // Ajouter le fond de carte (tiles)
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    // Charger villes.json
     fetch("data/villes.json")
         .then(response => {
             if (!response.ok) {
@@ -18,18 +16,16 @@ document.addEventListener("DOMContentLoaded", function() {
             const select = document.getElementById("ville-select");
 
             villes.forEach(ville => {
-                // Ajouter une option dans le select
+                
                 const option = document.createElement("option");
                 option.value = JSON.stringify({ lat: ville.lat, lng: ville.lng });
                 option.textContent = ville.nom;
                 select.appendChild(option);
 
-                // Ajouter un marker sur la carte
                 const marker = L.marker([ville.lat, ville.lng]).addTo(map);
                 marker.bindPopup(`<b>${ville.nom}</b><br>${ville.description}`);
             });
-
-            // Quand on choisit une ville dans le menu
+            
             select.addEventListener("change", function() {
                 if (this.value) {
                     const coords = JSON.parse(this.value);
@@ -43,8 +39,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-
-// Les musiques
 const musiques = [
   {
     titre: "Sagbohan Danialou - Mystique",
@@ -60,17 +54,14 @@ const musiques = [
   }
 ];
 
-// Initialisation
 let villeIndex = 0;
 let musiqueIndex = 0;
 
-// Sélection des éléments HTML
 const mapElement = document.getElementById('map');
 const villeSelect = document.getElementById('ville-select');
 const audioElement = document.getElementById('audio');
 const playerInfo = document.getElementById('player-info');
 
-// Remplir la liste déroulante des villes
 villes.forEach((ville, index) => {
   const option = document.createElement('option');
   option.value = index;
@@ -78,7 +69,6 @@ villes.forEach((ville, index) => {
   villeSelect.appendChild(option);
 });
 
-// Changer la ville affichée
 function changerVille(index) {
   const ville = villes[index];
   mapElement.style.backgroundImage = `url('${ville.image}')`;
@@ -90,7 +80,6 @@ function changerVille(index) {
   `;
 }
 
-// Contrôles musique
 function jouerMusique() {
   audioElement.src = musiques[musiqueIndex].fichier;
   playerInfo.textContent = musiques[musiqueIndex].titre;
@@ -107,7 +96,6 @@ function musiquePrecedente() {
   jouerMusique();
 }
 
-// Événements
 villeSelect.addEventListener('change', (e) => {
   villeIndex = e.target.value;
   changerVille(villeIndex);
@@ -116,6 +104,5 @@ villeSelect.addEventListener('change', (e) => {
 document.getElementById('prev-button').addEventListener('click', musiquePrecedente);
 document.getElementById('next-button').addEventListener('click', musiqueSuivante);
 
-// Démarrage
 changerVille(0);
 jouerMusique();
