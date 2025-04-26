@@ -22,7 +22,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 select.appendChild(option);
 
                 const marker = L.marker([ville.lat, ville.lng]).addTo(map);
-                marker.bindPopup(`<b>${ville.nom}</b><br>${ville.description}`);
+                marker.bindPopup(`
+  <b>${ville.nom}</b><br>
+  <img src="${ville.image}" alt="${ville.nom}" style="width:100px; border-radius:10px;"><br>
+  ${ville.description}
+`);
+
             });
 
             select.addEventListener("change", function() {
@@ -101,10 +106,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadTrack(currentTrack); // Initialisation
 });
-
-marker.bindPopup(`
-  <b>${ville.nom}</b><br>
-  <img src="${ville.image}" alt="${ville.nom}" style="width:100px; border-radius:10px;"><br>
-  ${ville.description}
-`);
-
