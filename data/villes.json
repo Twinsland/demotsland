@@ -6,6 +6,7 @@
     "population": "700 000",
     "description": "Cotonou est la capitale économique du Bénin, connue pour son port et son marché Dantokpa.",
     "image": "assets/images/cotonou.jpg"
+    "premium": true
   },
   {
     "nom": "Parakou",
