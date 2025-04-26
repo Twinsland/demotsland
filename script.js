@@ -18,11 +18,6 @@ document.addEventListener("DOMContentLoaded", function() {
             villesData = villes; // On garde les villes en mémoire
             const select = document.getElementById("ville-select");
 
-            // Ajout d'une option vide pour "Choisissez une ville"
-            const defaultOption = document.createElement("option");
-            defaultOption.value = "";
-            select.appendChild(defaultOption);
-
             villes.forEach(ville => {
                 const option = document.createElement("option");
                 option.value = JSON.stringify({ lat: ville.lat, lng: ville.lng });
