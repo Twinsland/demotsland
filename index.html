@@ -4,24 +4,19 @@
   <meta charset="UTF-8">
   <title>Twinsland - Démo Jouable</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
-  <div>
   <h1>Bienvenue dans Twinsland</h1>
   <p>Explorez les villes, découvrez les lieux, et laissez la musique vous guider.</p>
-</div>
-  
+
   <div id="carte-container">
     <select id="ville-select">
       <option value="">Choisissez une ville</option>
     </select>
-    <div id="carte"></div>
     <div id="map"></div>
   </div>
 
-  <!-- Lecteur de musique -->
   <div class="music-player">
     <div class="player-info">
       <span id="track-name">Titre</span> - <span id="artist-name">Artiste</span>
@@ -34,7 +29,6 @@
     <audio id="audio"></audio>
   </div>
 
-  <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="script.js"></script>
 </body>
