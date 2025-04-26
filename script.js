@@ -37,8 +37,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 });
 
-
-// === Gestion Musique ===
 const tracks = [
   { name: "Djidjoho", artist: "Sagbohan Danialou", src: "assets/music/sagbohan1.mp3" },
   { name: "Agolo", artist: "Angélique Kidjo", src: "assets/music/kidjo1.mp3" }
@@ -60,10 +58,10 @@ function loadTrack(index) {
 document.getElementById('play-btn').addEventListener('click', function() {
   if (audio.paused) {
     audio.play();
-    this.textContent = '❚❚'; // bouton pause
+    this.textContent = '❚❚';
   } else {
     audio.pause();
-    this.textContent = '▶'; // bouton play
+    this.textContent = '▶';
   }
 });
 
@@ -79,7 +77,6 @@ document.getElementById('next-btn').addEventListener('click', function() {
   audio.play();
 });
 
-// Charger la première musique au démarrage
 loadTrack(currentTrackIndex);
 
 
@@ -101,29 +98,9 @@ function changerVille(index) {
   `;
 }
 
-function jouerMusique() {
-  audioElement.src = musiques[musiqueIndex].fichier;
-  playerInfo.textContent = musiques[musiqueIndex].titre;
-  audioElement.play();
-}
-
-function musiqueSuivante() {
-  musiqueIndex = (musiqueIndex + 1) % musiques.length;
-  jouerMusique();
-}
-
-function musiquePrecedente() {
-  musiqueIndex = (musiqueIndex - 1 + musiques.length) % musiques.length;
-  jouerMusique();
-}
-
 villeSelect.addEventListener('change', (e) => {
   villeIndex = e.target.value;
   changerVille(villeIndex);
 });
 
-document.getElementById('prev-button').addEventListener('click', musiquePrecedente);
-document.getElementById('next-button').addEventListener('click', musiqueSuivante);
-
 changerVille(0);
-jouerMusique();
