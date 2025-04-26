@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function() {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
-    var map = L.map('map').setView([9.3077, 2.3158], 7);
 
     fetch("data/villes.json")
         .then(response => {
@@ -29,22 +28,6 @@ document.addEventListener("DOMContentLoaded", function() {
     <b>${ville.nom}</b><br>${ville.description}
   </div>
 `);
-var marker = L.marker([ville.latitude, ville.longitude]).addTo(map);
-
-    var popupContent = `
-      <div style="text-align: center;">
-        <img src="${ville.image}" alt="${ville.nom}" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 10px;">
-        <b>${ville.nom}</b><br>${ville.description}
-    `;
-
-    if (ville.premium) {
-        popupContent += `<br><span style="color: gold; font-weight: bold;">🏆 Premium City</span>`;
-    }
-
-    popupContent += `</div>`;
-
-    marker.bindPopup(popupContent);
-            });
 
             select.addEventListener("change", function() {
                 if (this.value) {
