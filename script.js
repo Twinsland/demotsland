@@ -37,10 +37,11 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 });
 
+// === Gestion Musique ===
 const tracks = [
-  { name: "Djidjoho", artist: "Sagbohan Danialou", src: "assets/music/sagbohan1.mp3" },
-  { name: "Agolo", artist: "Angélique Kidjo", src: "assets/music/kidjo1.mp3" }
+  { name: "Agolo", artist: "Angelique Kidjo", src: "assets/music/kidjo1.mp3" },
   { name: "Bon Choix", artist: "First King", src: "assets/music/firstking1.mp3" }
+    { name: "Djidjoho", artist: "Sagbohan Danialou", src: "assets/music/sagbohan1.mp3" }
 ];
 
 let currentTrackIndex = 0;
@@ -58,10 +59,10 @@ function loadTrack(index) {
 document.getElementById('play-btn').addEventListener('click', function() {
   if (audio.paused) {
     audio.play();
-    this.textContent = '❚❚';
+    this.textContent = '❚❚'; // bouton pause
   } else {
     audio.pause();
-    this.textContent = '▶';
+    this.textContent = '▶'; // bouton play
   }
 });
 
@@ -77,30 +78,5 @@ document.getElementById('next-btn').addEventListener('click', function() {
   audio.play();
 });
 
+// Charger la première musique au démarrage
 loadTrack(currentTrackIndex);
-
-
-villes.forEach((ville, index) => {
-  const option = document.createElement('option');
-  option.value = index;
-  option.textContent = ville.nom;
-  villeSelect.appendChild(option);
-});
-
-function changerVille(index) {
-  const ville = villes[index];
-  mapElement.style.backgroundImage = `url('${ville.image}')`;
-  mapElement.style.backgroundSize = 'cover';
-  mapElement.style.backgroundPosition = 'center';
-  mapElement.innerHTML = `
-    <h2>${ville.nom}</h2>
-    <p>${ville.description}</p>
-  `;
-}
-
-villeSelect.addEventListener('change', (e) => {
-  villeIndex = e.target.value;
-  changerVille(villeIndex);
-});
-
-changerVille(0);
