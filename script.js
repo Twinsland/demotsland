@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function() {
             const select = document.getElementById("ville-select");
 
             villes.forEach(ville => {
-                
                 const option = document.createElement("option");
                 option.value = JSON.stringify({ lat: ville.lat, lng: ville.lng });
                 option.textContent = ville.nom;
@@ -25,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const marker = L.marker([ville.lat, ville.lng]).addTo(map);
                 marker.bindPopup(`<b>${ville.nom}</b><br>${ville.description}`);
             });
-            
+
             select.addEventListener("change", function() {
                 if (this.value) {
                     const coords = JSON.parse(this.value);
