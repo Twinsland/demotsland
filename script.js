@@ -23,9 +23,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                 const marker = L.marker([ville.lat, ville.lng]).addTo(map);
                 marker.bindPopup(`
-  <b>${ville.nom}</b><br>
-  <img src="${ville.image}" alt="${ville.nom}" style="width:100px; border-radius:10px;"><br>
-  ${ville.description}
+  <div style="text-align: center;">
+    <img src="${ville.image}" alt="${ville.nom}" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 10px;">
+    <b>${ville.nom}</b><br>${ville.description}
+  </div>
 `);
 
             });
