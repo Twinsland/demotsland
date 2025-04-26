@@ -1,0 +1,30 @@
+[
+    {
+      "nom": "Cotonou",
+      "population": "700 000",
+      "description": "Ville portuaire et économique du Bénin.",
+      "lat": 6.3703,
+      "lng": 2.3912
+    },
+    {
+      "nom": "Parakou",
+      "population": "255 000",
+      "description": "Ville du nord du Bénin, centre commercial important.",
+      "lat": 9.345,
+      "lng": 2.6301
+    },
+    {
+      "nom": "Porto-Novo",
+      "population": "265 000",
+      "description": "Capitale administrative du Bénin.",
+      "lat": 6.4969,
+      "lng": 2.6289
+    },
+    {
+      "nom": "Abomey-Calavi",
+      "population": "655 000",
+      "description": "Banlieue importante de Cotonou.",
+      "lat": 6.4483,
+      "lng": 2.3556
+    }
+  ]
