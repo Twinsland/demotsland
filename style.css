@@ -19,6 +19,13 @@ body {
     margin-bottom: 20px;
     font-size: 1.2em;
   }
+
+h1, p {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
+}
   
   /* Carte */
   #carte-container {
