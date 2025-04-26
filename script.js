@@ -37,46 +37,67 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 });
 
-// === Gestion Musique ===
-const tracks = [
-  { name: "Agolo", artist: "Angelique Kidjo", src: "assets/music/kidjo1.mp3" },
-  { name: "Bon Choix", artist: "First King", src: "assets/music/firstking1.mp3" }
-    { name: "Djidjoho", artist: "Sagbohan Danialou", src: "assets/music/sagbohan1.mp3" }
+const musics = [
+  'assets/musics/sagbohan1.mp3',
+  'assets/musics/kidjo1.mp3',
+  'assets/musics/firstking1.mp3'
 ];
 
-let currentTrackIndex = 0;
-const audio = document.getElementById('audio');
-const trackName = document.getElementById('track-name');
-const artistName = document.getElementById('artist-name');
+// script.js
 
-function loadTrack(index) {
-  const track = tracks[index];
-  audio.src = track.src;
-  trackName.textContent = track.name;
-  artistName.textContent = track.artist;
-}
+document.addEventListener("DOMContentLoaded", () => {
+    const audio = document.getElementById('audio');
+    const playBtn = document.getElementById('play-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const trackName = document.getElementById('track-name');
+    const artistName = document.getElementById('artist-name');
 
-document.getElementById('play-btn').addEventListener('click', function() {
-  if (audio.paused) {
-    audio.play();
-    this.textContent = '❚❚'; // bouton pause
-  } else {
-    audio.pause();
-    this.textContent = '▶'; // bouton play
-  }
+    const tracks = [
+        { title: 'Djidjoho', artist: 'Sagbohan Danialou', src: 'assets/musics/sagbohan1.mp3' },
+        { title: 'Wombo Lombo', artist: 'Angélique Kidjo', src: 'assets/musics/kidjo1.mp3' },
+        { title: 'Bon choix', artist: 'First King', src: 'assets/musics/firstking1.mp3' }
+    ];
+
+    let currentTrack = 0;
+
+    function loadTrack(index) {
+        const track = tracks[index];
+        audio.src = track.src;
+        trackName.textContent = track.title;
+        artistName.textContent = track.artist;
+        playBtn.textContent = '▶'; // Play icon
+    }
+
+    function playPause() {
+        if (audio.paused) {
+            audio.play();
+            playBtn.textContent = '❚❚'; // Pause icon
+        } else {
+            audio.pause();
+            playBtn.textContent = '▶'; // Play icon
+        }
+    }
+
+    function prevTrack() {
+        currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
+        loadTrack(currentTrack);
+        audio.play();
+        playBtn.textContent = '❚❚';
+    }
+
+    function nextTrack() {
+        currentTrack = (currentTrack + 1) % tracks.length;
+        loadTrack(currentTrack);
+        audio.play();
+        playBtn.textContent = '❚❚';
+    }
+
+    playBtn.addEventListener('click', playPause);
+    prevBtn.addEventListener('click', prevTrack);
+    nextBtn.addEventListener('click', nextTrack);
+
+    audio.addEventListener('ended', nextTrack); // Auto enchaînement
+
+    loadTrack(currentTrack); // Initialisation
 });
-
-document.getElementById('prev-btn').addEventListener('click', function() {
-  currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
-  loadTrack(currentTrackIndex);
-  audio.play();
-});
-
-document.getElementById('next-btn').addEventListener('click', function() {
-  currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
-  loadTrack(currentTrackIndex);
-  audio.play();
-});
-
-// Charger la première musique au démarrage
-loadTrack(currentTrackIndex);
