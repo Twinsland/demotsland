@@ -1,5 +1,3 @@
-let map;  // Déclaré au tout début, vide pour l'instant
-
 document.addEventListener("DOMContentLoaded", function() {
     const map = L.map('map').setView([7.5, 2.5], 7);
 
@@ -22,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 option.value = JSON.stringify({ lat: ville.lat, lng: ville.lng });
                 option.textContent = ville.nom;
                 select.appendChild(option);
-map = L.map(...)
+                
                 const marker = L.marker([ville.lat, ville.lng]).addTo(map);
                 marker.bindPopup(`
   <b>${ville.nom}</b><br>
