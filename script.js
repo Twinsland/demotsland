@@ -1,7 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const villesContainer = document.getElementById("villes-container");
+    const map = L.map('map').setView([7.5, 2.5], 7); // Centré sur le Bénin
 
-    // Charger villes.json dynamiquement
+    // Ajouter le fond de carte (tiles)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Charger villes.json
     fetch("data/villes.json")
         .then(response => {
             if (!response.ok) {
@@ -10,23 +15,29 @@ document.addEventListener("DOMContentLoaded", function() {
             return response.json();
         })
         .then(villes => {
+            const select = document.getElementById("ville-select");
+
             villes.forEach(ville => {
-                const villeCard = document.createElement("div");
-                villeCard.classList.add("ville-card");
+                // Ajouter une option dans le select
+                const option = document.createElement("option");
+                option.value = JSON.stringify({ lat: ville.lat, lng: ville.lng });
+                option.textContent = ville.nom;
+                select.appendChild(option);
 
-                villeCard.innerHTML = `
-                    <img src="${ville.image}" alt="${ville.nom}">
-                    <div class="ville-card-body">
-                        <h3>${ville.nom}</h3>
-                        <p>${ville.description}</p>
-                    </div>
-                `;
+                // Ajouter un marker sur la carte
+                const marker = L.marker([ville.lat, ville.lng]).addTo(map);
+                marker.bindPopup(`<b>${ville.nom}</b><br>${ville.description}`);
+            });
 
-                villesContainer.appendChild(villeCard);
+            // Quand on choisit une ville dans le menu
+            select.addEventListener("change", function() {
+                if (this.value) {
+                    const coords = JSON.parse(this.value);
+                    map.setView([coords.lat, coords.lng], 13);
+                }
             });
         })
         .catch(error => {
             console.error("Erreur lors du chargement des villes :", error);
-            villesContainer.innerHTML = "<p>Impossible de charger les villes.</p>";
         });
 });
