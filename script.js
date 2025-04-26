@@ -1,3 +1,4 @@
+// Chargement des données des villes
 document.addEventListener("DOMContentLoaded", function() {
     const map = L.map('map').setView([7.5, 2.5], 7);
 
