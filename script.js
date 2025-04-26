@@ -101,3 +101,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadTrack(currentTrack); // Initialisation
 });
+
+marker.bindPopup(`
+  <b>${ville.nom}</b><br>
+  <img src="${ville.image}" alt="${ville.nom}" style="width:100px; border-radius:10px;"><br>
+  ${ville.description}
+`);
+
