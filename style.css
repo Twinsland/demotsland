@@ -94,7 +94,7 @@ body {
 .player-controls button {
   background-color: #444;
   border: none;
-  padding: 8px 15px;
+  padding: 8px 9px;
   border-radius: 50%;
   cursor: pointer;
   color: #fff;
