@@ -1,30 +1,30 @@
 [
-    {
-      "nom": "Cotonou",
-      "population": "700 000",
-      "description": "Ville portuaire et économique du Bénin.",
-      "lat": 6.3703,
-      "lng": 2.3912
-    },
-    {
-      "nom": "Parakou",
-      "population": "255 000",
-      "description": "Ville du nord du Bénin, centre commercial important.",
-      "lat": 9.345,
-      "lng": 2.6301
-    },
-    {
-      "nom": "Porto-Novo",
-      "population": "265 000",
-      "description": "Capitale administrative du Bénin.",
-      "lat": 6.4969,
-      "lng": 2.6289
-    },
-    {
-      "nom": "Abomey-Calavi",
-      "population": "655 000",
-      "description": "Banlieue importante de Cotonou.",
-      "lat": 6.4483,
-      "lng": 2.3556
-    }
-  ]
+  {
+    "nom": "Cotonou",
+    "lat": 6.3703,
+    "lng": 2.3912,
+    "population": "700 000",
+    "description": "Cotonou est la capitale économique du Bénin, connue pour son port et son marché Dantokpa."
+  },
+  {
+    "nom": "Parakou",
+    "lat": 9.3467,
+    "lng": 2.6099,
+    "population": "255 000",
+    "description": "Parakou est un centre commercial important dans le nord du Bénin."
+  },
+  {
+    "nom": "Porto-Novo",
+    "lat": 6.4969,
+    "lng": 2.6289,
+    "population": "265 000",
+    "description": "Porto-Novo est la capitale administrative du Bénin, riche en culture et en histoire."
+  },
+  {
+    "nom": "Abomey-Calavi",
+    "lat": 6.4483,
+    "lng": 2.3554,
+    "population": "650 000",
+    "description": "Abomey-Calavi est une grande ville universitaire et résidentielle à proximité de Cotonou."
+  }
+]
