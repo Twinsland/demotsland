@@ -29,6 +29,8 @@ document.addEventListener("DOMContentLoaded", function() {
   </div>
 `);
 
+            });
+
             select.addEventListener("change", function() {
                 if (this.value) {
                     const coords = JSON.parse(this.value);
