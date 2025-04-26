@@ -4,27 +4,31 @@
     "lat": 6.3703,
     "lng": 2.3912,
     "population": "700 000",
-    "description": "Cotonou est la capitale économique du Bénin, connue pour son port et son marché Dantokpa."
+    "description": "Cotonou est la capitale économique du Bénin, connue pour son port et son marché Dantokpa.",
+    "image": "assets/images/cotonou.jpg"
   },
   {
     "nom": "Parakou",
     "lat": 9.3467,
     "lng": 2.6099,
     "population": "255 000",
-    "description": "Parakou est un centre commercial important dans le nord du Bénin."
+    "description": "Parakou est un centre commercial important dans le nord du Bénin.",
+    "image": "assets/images/parakou.jpg"
   },
   {
     "nom": "Porto-Novo",
     "lat": 6.4969,
     "lng": 2.6289,
     "population": "265 000",
-    "description": "Porto-Novo est la capitale administrative du Bénin, riche en culture et en histoire."
+    "description": "Porto-Novo est la capitale administrative du Bénin, riche en culture et en histoire.",
+    "image": "assets/images/porto-novo.jpg"
   },
   {
     "nom": "Abomey-Calavi",
     "lat": 6.4483,
     "lng": 2.3554,
     "population": "650 000",
-    "description": "Abomey-Calavi est une grande ville universitaire et résidentielle à proximité de Cotonou."
+    "description": "Abomey-Calavi est une grande ville universitaire et résidentielle à proximité de Cotonou.",
+    "image": "assets/images/abomey-calavi.jpg"
   }
 ]
