@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function() {
             // Ajout d'une option vide pour "Choisissez une ville"
             const defaultOption = document.createElement("option");
             defaultOption.value = "";
-            defaultOption.textContent = "Choisissez une ville";
             select.appendChild(defaultOption);
 
             villes.forEach(ville => {
