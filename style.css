@@ -44,29 +44,59 @@ body {
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
   }
   
-  /* Musique */
-  .music-player {
-    margin-top: 30px;
-  }
-  
-  .player-info {
-    margin-bottom: 10px;
-    font-size: 1.2em;
-  }
-  
-  .player-controls button {
-    background-color: rgba(255, 255, 255, 0.2);
-    border: none;
-    margin: 0 10px;
-    padding: 10px 15px;
-    font-size: 1.5em;
-    border-radius: 50%;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .player-controls button:hover {
-    background-color: rgba(255, 255, 255, 0.4);
-  }
-  
+  /* --- Lecteur de musique --- */
+.music-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #bcda27;
+  padding: 10px 15px;
+  border-radius: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.music-player:hover {
+  transform: scale(1.05);
+}
+
+.music-player audio {
+  display: none;
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.player-info span {
+  font-size: 14px;
+}
+
+.player-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.player-controls button {
+  background-color: #444;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+.player-controls button:hover {
+  background-color: #888;
+}
+
+.player-controls button:disabled {
+  background-color: #777;
+}
