@@ -37,7 +37,7 @@ body {
   }
   
   #map {
-    width: 100%;
+    width: 90%;
     height: 600px;
     border-radius: 20px;
     overflow: hidden;
