@@ -1,68 +1,72 @@
+/* Style général */
 body {
-  font-family: 'Arial', sans-serif;
-  background-image: url('assets/images/map-background.jpg');
-  background-size: cover;
-  background-position: center;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  color: white;
-}
-
-h1 {
-  margin-top: 20px;
-  font-size: 2.5em;
-}
-
-p {
-  margin-bottom: 20px;
-  font-size: 1.2em;
-}
-
-#carte-container {
-  position: relative;
-  margin: 20px auto;
-  width: 90%;
-  max-width: 1200px;
-}
-
-#ville-select {
-  margin-bottom: 10px;
-  padding: 10px;
-  font-size: 1em;
-  border-radius: 10px;
-  border: none;
-}
-
-#map {
-  width: 100%;
-  height: 600px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-}
-
-.music-player {
-  margin-top: 30px;
-}
-
-.player-info {
-  margin-bottom: 10px;
-  font-size: 1.2em;
-}
-
-.player-controls button {
-  background-color: rgba(255, 255, 255, 0.2);
-  border: none;
-  margin: 0 10px;
-  padding: 10px 15px;
-  font-size: 1.5em;
-  border-radius: 50%;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.player-controls button:hover {
-  background-color: rgba(255, 255, 255, 0.4);
-}
+    font-family: 'Arial', sans-serif;
+    background-image: url('assets/images/map-background.jpg');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: white;
+  }
+  
+  h1 {
+    margin-top: 20px;
+    font-size: 2.5em;
+  }
+  
+  p {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+  }
+  
+  /* Carte */
+  #carte-container {
+    position: relative;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1200px;
+  }
+  
+  #ville-select {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 10px;
+    border: none;
+  }
+  
+  #map {
+    width: 100%;
+    height: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  }
+  
+  /* Musique */
+  .music-player {
+    margin-top: 30px;
+  }
+  
+  .player-info {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+  }
+  
+  .player-controls button {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    margin: 0 10px;
+    padding: 10px 15px;
+    font-size: 1.5em;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .player-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+  
