@@ -154,3 +154,15 @@ document.addEventListener("DOMContentLoaded", function() {
     musicPlayer.classList.toggle('open');
   });
 });
+
+// Fonction pour déclencher un flash
+function triggerFlash() {
+  const flash = document.getElementById('flash');
+  flash.style.display = 'block';
+  flash.classList.remove('flash-effect'); // reset
+  void flash.offsetWidth; // trick pour re-déclencher l'animation
+  flash.classList.add('flash-effect');
+  setTimeout(() => {
+    flash.style.display = 'none';
+  }, 500); // cacher après animation
+}
