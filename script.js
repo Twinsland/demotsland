@@ -152,3 +152,21 @@ const musicPlayer = document.querySelector('.music-player');
 musicPlayer.addEventListener('click', () => {
   musicPlayer.classList.toggle('open');
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const musicPlayer = document.querySelector('.music-player');
+    const audio = document.getElementById('background-music');
+
+    // Lance la musique automatiquement au chargement
+    if (audio) {
+      audio.volume = 0.5; // Volume réduit pour pas agresser
+      audio.play().catch(err => {
+        console.log('Lecture automatique bloquée par le navigateur.', err);
+      });
+    }
+
+    // Toggle du lecteur
+    musicPlayer.addEventListener('click', () => {
+      musicPlayer.classList.toggle('open');
+    });
+  });
