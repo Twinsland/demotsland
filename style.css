@@ -15,6 +15,7 @@ body {
   padding: 20px 10px;
   background: rgba(0, 0, 0, 0.6); /* Bandeau noir semi-transparent */
   box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
+  animation: fadeDown 1.2s ease forwards;
 }
 
 #game-logo {
@@ -22,7 +23,7 @@ body {
   width: auto;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-  margin-bottom: 10px; /* espace entre logo et h1 */
+  margin-bottom: 10px;
 }
 
 #game-header h1 {
@@ -68,53 +69,77 @@ body {
   box-shadow: 0 0 25px gold;
 }
 
-/* Lecteur de musique */
+/* Lecteur de musique repliable */
 .music-player {
   position: fixed;
   bottom: 15px;
   right: 15px;
-  background: rgba(0,0,0,0.8);
-  padding: 10px 20px;
-  border-radius: 40px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  padding: 10px;
   box-shadow: 0 0 15px gold;
   display: flex;
   align-items: center;
-  gap: 15px;
+  justify-content: center;
   color: #fff;
-  transition: transform 0.3s;
-}
-
-.music-player:hover {
-  transform: scale(1.05);
-}
-
-.player-info {
-  display: flex;
-  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.4s ease;
   overflow: hidden;
-  max-width: 150px;
+  z-index: 1000;
+}
+
+/* Quand le lecteur est ouvert */
+.music-player.open {
+  width: 260px;
+  height: auto;
+  border-radius: 30px;
+  padding: 15px 20px;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+/* Informations sur la musique */
+.player-info {
+  display: none;
+  flex-direction: column;
+  max-width: 120px;
+  overflow: hidden;
+}
+
+.music-player.open .player-info {
+  display: flex;
 }
 
 .player-info span {
-  font-size: 10px;
+  font-size: 12px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+/* Contrôles du lecteur */
 .player-controls {
-  display: flex;
+  display: none;
+  flex-direction: row;
   gap: 10px;
+}
+
+.music-player.open .player-controls {
+  display: flex;
 }
 
 .player-controls button {
   background-color: gold;
   border: none;
-  padding: 10px;
+  padding: 8px;
   border-radius: 50%;
   cursor: pointer;
   color: black;
   font-weight: bold;
+  font-size: 14px;
   transition: background 0.3s;
 }
 
@@ -136,9 +161,4 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-/* On applique l'animation au header */
-#game-header {
-  animation: fadeDown 1.2s ease forwards;
 }
