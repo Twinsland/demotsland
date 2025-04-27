@@ -71,7 +71,7 @@ body {
     display: flex;
     flex-direction: column; /* <-- AJOUTÉ pour mettre en colonne */
     align-items: center; /* <-- pour centrer */
-    gap: 20px; /* <-- un petit espace entre info et boutons */
+    gap: 30px; /* <-- un petit espace entre info et boutons */
     color: #fff;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
