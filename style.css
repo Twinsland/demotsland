@@ -13,7 +13,7 @@ body {
 /* Logo et entête */
 #game-header {
   padding: 20px 10px;
-  background: rgba(0, 0, 0, 0.6); /* Bandeau noir semi-transparent */
+  background: rgba(0, 0, 0, 0.6);
   box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
   animation: fadeDown 1.2s ease forwards;
 }
@@ -88,6 +88,15 @@ body {
   transition: all 0.4s ease;
   overflow: hidden;
   z-index: 1000;
+  animation: pop 0.5s ease;
+}
+
+/* Petite icône play */
+.music-player::before {
+  content: '▶';
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.3);
+  position: absolute;
 }
 
 /* Quand le lecteur est ouvert */
@@ -99,6 +108,11 @@ body {
   flex-direction: row;
   justify-content: flex-start;
   gap: 20px;
+}
+
+/* Cache l'icône Play quand ouvert */
+.music-player.open::before {
+  display: none;
 }
 
 /* Informations sur la musique */
@@ -151,7 +165,7 @@ body {
   background-color: gray;
 }
 
-/* Animation d'apparition pour le header */
+/* Animation d'apparition du header */
 @keyframes fadeDown {
   0% {
     opacity: 0;
@@ -160,5 +174,20 @@ body {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Animation pop légère */
+@keyframes pop {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
   }
 }
