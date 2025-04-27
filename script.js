@@ -166,3 +166,12 @@ function triggerFlash() {
     flash.style.display = 'none';
   }, 500); // cacher après animation
 }
+
+function triggerFlash() {
+  const flash = document.createElement('div');
+  flash.className = 'flash-effect';
+  document.body.appendChild(flash);
+  setTimeout(() => {
+    flash.remove();
+  }, 500); // Temps identique à l'animation
+}
