@@ -65,13 +65,13 @@ body {
     bottom: 10px;
     right: 10px;
     background: rgba(0, 0, 0, 0.8);
-    padding: 8px 15px;
-    border-radius: 30px;
+    padding: 10px 15px; /* légèrement ajusté */
+    border-radius: 20px; /* plus doux, moins "grosse bulle" */
     box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
     display: flex;
-    flex-direction: column; /* <-- AJOUTÉ pour mettre en colonne */
-    align-items: center; /* <-- pour centrer */
-    gap: 30px; /* <-- un petit espace entre info et boutons */
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
     color: #fff;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -91,9 +91,12 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center; /* centrer le texte */
     overflow: hidden;
     white-space: nowrap;
-    max-width: 150px;
+    max-width: 180px; /* un peu plus large pour respirer */
+    gap: 5px;
+    font-size: 12px; /* légèrement plus lisible */
 }
 
 /* Défilement automatique si trop long */
@@ -118,11 +121,12 @@ body {
 .player-controls button {
     background-color: #444;
     border: none;
-    padding: 8px;
+    padding: 6px; /* un peu plus petit */
     border-radius: 50%;
     cursor: pointer;
     color: #fff;
     transition: background-color 0.3s, transform 0.2s;
+    font-size: 14px; /* icônes plus cohérentes */
 }
 
 .player-controls button:hover {
@@ -134,4 +138,16 @@ body {
 .player-controls button:disabled {
     background-color: #777;
     cursor: not-allowed;
+}
+
+.player-info span:hover {
+    color: #ffd700; /* Un or plus intense */
+    text-shadow: 0 0 5px gold, 0 0 10px gold, 0 0 20px gold;
+    animation: shine 1s linear infinite;
+}
+
+@keyframes shine {
+    0% { text-shadow: 0 0 5px gold, 0 0 10px gold, 0 0 20px gold; }
+    50% { text-shadow: 0 0 15px #ffd700, 0 0 25px #ffd700, 0 0 35px #ffd700; }
+    100% { text-shadow: 0 0 5px gold, 0 0 10px gold, 0 0 20px gold; }
 }
