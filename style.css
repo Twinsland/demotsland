@@ -1,10 +1,9 @@
-<!-- Twinsland Pack: Installation Rapide -->
-
 <!-- 1. Ajout de la police Orbitron -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
 <!-- 2. Nouveau CSS Moderne -->
 <style>
+/* Style général */
 body {
   font-family: 'Orbitron', sans-serif;
   background-image: url('assets/images/map-background.jpg');
@@ -16,6 +15,7 @@ body {
   color: #eee;
 }
 
+/* Carte */
 #carte-container {
   position: relative;
   margin: 20px auto;
@@ -46,6 +46,7 @@ body {
   box-shadow: 0 0 25px gold;
 }
 
+/* Lecteur de musique */
 .music-player {
   position: fixed;
   bottom: 15px;
@@ -58,11 +59,11 @@ body {
   align-items: center;
   gap: 15px;
   color: #fff;
+  transition: transform 0.3s;
 }
 
 .music-player:hover {
   transform: scale(1.05);
-  transition: 0.3s;
 }
 
 .player-info {
@@ -103,19 +104,7 @@ body {
   background-color: gray;
 }
 
-</style>
-
-<!-- 3. Optionnel: Son de selection -->
-<audio id="select-sound" src="assets/sounds/select.mp3" preload="auto"></audio>
-
-<script>
-  const selectSound = document.getElementById('select-sound');
-  document.getElementById('ville-select').addEventListener('change', () => {
-    selectSound.play();
-  });
-</script>
-    
-/* --- Logo et entête façon jeu vidéo --- */
+/* Logo et entête façon jeu vidéo */
 #game-header {
   position: fixed;
   top: 10px;
@@ -128,5 +117,16 @@ body {
   width: auto;
   border-radius: 10px;
   padding: 5px;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* Effet doré léger */
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
 }
+</style>
+
+<!-- 3. Optionnel: Son de sélection -->
+<audio id="select-sound" src="assets/sounds/select.mp3" preload="auto"></audio>
+
+<script>
+  const selectSound = document.getElementById('select-sound');
+  document.getElementById('ville-select').addEventListener('change', () => {
+    selectSound.play();
+  });
+</script>
