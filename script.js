@@ -103,8 +103,10 @@ document.addEventListener("DOMContentLoaded", () => {
         { title: 'Wombo Lombo', artist: 'Angélique Kidjo', src: 'assets/musics/kidjo1.mp3' },
         { title: 'Bon choix', artist: 'First King', src: 'assets/musics/firstking1.mp3' }
     ];
+    const playerInfoSpan = document.querySelector('.player-info span');
 
     let currentTrack = 0;
+playerInfoSpan.textContent = `${tracks[currentTrackIndex].artist} - ${tracks[currentTrackIndex].title}`;
 
     function loadTrack(index) {
         const track = tracks[index];
@@ -133,10 +135,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function nextTrack() {
         currentTrack = (currentTrack + 1) % tracks.length;
-        loadTrack(currentTrack);
-        audio.play();
-        playBtn.textContent = '❚❚';
-    }
+        if (currentTrackIndex >= tracks.length) {
+        currentTrackIndex = 0; // revenir au début si fin de playlist
 
     playBtn.addEventListener('click', playPause);
     prevBtn.addEventListener('click', prevTrack);
@@ -146,3 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadTrack(currentTrack); // Chargement initial
 });
+
+playerInfoSpan.textContent = `${tracks[currentTrackIndex].artist} - ${tracks[currentTrackIndex].title}`;
+    // Ici tu peux aussi changer le src de ton audio
+}
