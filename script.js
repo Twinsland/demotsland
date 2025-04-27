@@ -56,24 +56,31 @@ document.addEventListener("DOMContentLoaded", function() {
         select.appendChild(option);
 
         const marker = ville.nom === "Cotonou"
-          ? L.marker([ville.lat, ville.lng], { icon: goldIcon }).addTo(map)
-          : L.marker([ville.lat, ville.lng]).addTo(map);
+  ? L.marker([ville.lat, ville.lng], { icon: goldIcon })
+  : L.marker([ville.lat, ville.lng]);
 
-        marker.bindPopup(`
-          <div style="text-align: center;">
-            <img src="${ville.image}" alt="${ville.nom}" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 10px;">
-            <b>${ville.nom}</b><br>${ville.description}
-          </div>
-        `);
-      });
+marker.addTo(map).bindPopup(`
+  <div style="text-align: center;">
+    <img src="${ville.image}" alt="${ville.nom}" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 10px;">
+    <b>${ville.nom}</b><br>${ville.description}
+  </div>
+`);
+
+marker.on('click', function() {
+  triggerFlash(); // ← Ajoute ici aussi
+});
+
 
       select.addEventListener("change", function() {
-        if (this.value) {
-          const coords = JSON.parse(this.value);
-          map.setView([coords.lat, coords.lng], 13);
-        } else {
-          map.setView([7.5, 2.5], 7);
-        }
+  if (this.value) {
+    const coords = JSON.parse(this.value);
+    map.setView([coords.lat, coords.lng], 13);
+    triggerFlash(); // ← Ajoute ici
+  } else {
+    map.setView([7.5, 2.5], 7);
+  }
+});
+
       });
     })
     .catch(error => console.error("Erreur lors du chargement des villes :", error));
