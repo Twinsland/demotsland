@@ -114,3 +114,20 @@ body {
     selectSound.play();
   });
 </script>
+    
+/* --- Logo et entête façon jeu vidéo --- */
+#game-header {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+}
+
+#game-logo {
+  height: 60px;
+  width: auto;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 5px;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* Effet doré léger */
+}
