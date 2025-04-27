@@ -146,3 +146,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadTrack(currentTrack); // Chargement initial
 });
+
+// Gestion ouverture / fermeture du lecteur de musique
+const musicPlayer = document.querySelector('.music-player');
+musicPlayer.addEventListener('click', () => {
+  musicPlayer.classList.toggle('open');
+});
