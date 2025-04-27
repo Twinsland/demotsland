@@ -103,19 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
         { title: 'Wombo Lombo', artist: 'Angélique Kidjo', src: 'assets/musics/kidjo1.mp3' },
         { title: 'Bon choix', artist: 'First King', src: 'assets/musics/firstking1.mp3' }
     ];
-    
-// Lance la musique automatiquement au chargement
-    if (audio) {
-      audio.volume = 0.5; // Volume réduit pour pas agresser
-      audio.play().catch(err => {
-        console.log('Lecture automatique bloquée par le navigateur.', err);
-      });
-    }
-
-    // Toggle du lecteur
-    musicPlayer.addEventListener('click', () => {
-      musicPlayer.classList.toggle('open');
-    });
   });
     let currentTrack = 0;
 
