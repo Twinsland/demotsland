@@ -7,32 +7,32 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
-  <header id="game-header">
+<header id="game-header">
   <img src="assets/images/logo-twinsland.png" alt="Twinsland Logo" id="game-logo">
   <h1>Bienvenue dans Twinsland</h1>
   <p>Explorez les villes, découvrez les lieux, et laissez la musique vous guider.</p>
 </header>
 
-  <div id="carte-container">
-    <select id="ville-select">
-      <option value="">Choisissez une ville</option>
-    </select>
-    <div id="map"></div>
-  </div>
+<div id="carte-container">
+  <select id="ville-select">
+    <option value="">Choisissez une ville</option>
+  </select>
+  <div id="map"></div>
+</div>
 
-  <div class="music-player">
-    <div class="player-info">
-      <span id="track-name">Titre</span> | <span id="artist-name">Artiste</span>
-    </div>
-    <div class="player-controls">
-      <button id="prev-btn">&#10094;</button>
-      <button id="play-btn">&#9654;</button>
-      <button id="next-btn">&#10095;</button>
-    </div>
-    <audio id="audio"></audio>
+<div class="music-player">
+  <div class="player-info">
+    <span id="track-name">Titre</span> | <span id="artist-name">Artiste</span>
   </div>
+  <div class="player-controls">
+    <button id="prev-btn">&#10094;</button>
+    <button id="play-btn">&#9654;</button>
+    <button id="next-btn">&#10095;</button>
+  </div>
+  <audio id="audio" loop></audio>
+</div>
 
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="script.js"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
