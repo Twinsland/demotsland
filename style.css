@@ -1,8 +1,3 @@
-<!-- 1. Ajout de la police Orbitron -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-
-<!-- 2. Nouveau CSS Moderne -->
-<style>
 /* Style général */
 body {
   font-family: 'Orbitron', sans-serif;
@@ -15,10 +10,37 @@ body {
   color: #eee;
 }
 
+/* Logo et entête */
+#game-header {
+  padding: 20px 10px;
+  background: rgba(0, 0, 0, 0.6); /* Bandeau noir semi-transparent */
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
+}
+
+#game-logo {
+  height: 80px;
+  width: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+  margin-bottom: 10px; /* espace entre logo et h1 */
+}
+
+#game-header h1 {
+  margin: 10px 0 5px 0;
+  font-size: 2.5em;
+  color: gold;
+}
+
+#game-header p {
+  margin: 0;
+  font-size: 1.2em;
+  color: #f0f0f0;
+}
+
 /* Carte */
 #carte-container {
   position: relative;
-  margin: 20px auto;
+  margin: 30px auto 20px auto;
   width: 90%;
   max-width: 1200px;
 }
@@ -104,29 +126,19 @@ body {
   background-color: gray;
 }
 
-/* Logo et entête façon jeu vidéo */
+/* Animation d'apparition pour le header */
+@keyframes fadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* On applique l'animation au header */
 #game-header {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  z-index: 1000;
+  animation: fadeDown 1.2s ease forwards;
 }
-
-#game-logo {
-  height: 60px;
-  width: auto;
-  border-radius: 10px;
-  padding: 5px;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-}
-</style>
-
-<!-- 3. Optionnel: Son de sélection -->
-<audio id="select-sound" src="assets/sounds/select.mp3" preload="auto"></audio>
-
-<script>
-  const selectSound = document.getElementById('select-sound');
-  document.getElementById('ville-select').addEventListener('change', () => {
-    selectSound.play();
-  });
-</script>
