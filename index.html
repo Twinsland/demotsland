@@ -2,24 +2,16 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Twinsland - Démo Jouable</title>
+  <title>Twinsland - Entrez dans l'aventure</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
-  <div id="flash" class="flash-effect" style="display: none;"></div>
-<body>
-<header id="game-header">
-  <img src="assets/images/logo-twinsland.png" alt="Twinsland Logo" id="game-logo">
-  <h1>Bienvenue dans Twinsland</h1>
-  <p>Explorez les villes, découvrez les lieux, et laissez la musique vous guider.</p>
-</header>
-
-<div id="carte-container">
-  <select id="ville-select">
-    <option value="">Choisissez une ville</option>
-  </select>
-  <div id="map"></div>
-</div>
+<body class="landing-page">
+  <div class="intro-overlay">
+    <img src="assets/images/logo-twinsland.png" alt="Twinsland Logo" class="logo">
+    <h1>Bienvenue à Twinsland</h1>
+    <p class="slogan">Explorez, collectionnez, vibrez au rythme du Bénin</p>
+    <button onclick="window.location.href='carte.html'" class="start-btn">Commencer l'aventure</button>
+  </div>
 
 <div class="music-player">
   <div class="player-info">
@@ -33,7 +25,9 @@
   <audio id="audio" loop></audio>
 </div>
 
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="script.js"></script>
+  <video autoplay muted loop id="bg-video">
+    <source src="assets/videos/intro-twinsland.mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la vidéo de fond.
+  </video>
 </body>
 </html>
