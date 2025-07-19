@@ -1,184 +1,70 @@
-// Partie Carte
-document.addEventListener("DOMContentLoaded", function() {
-  const map = L.map('map').setView([7.5, 2.5], 7);
+const villes = [
+  { nom: "Cotonou", lat: 6.3703, lon: 2.3912, premium: true },
+  { nom: "Porto-Novo", lat: 6.4969, lon: 2.6289 },
+  { nom: "Parakou", lat: 9.34, lon: 2.63 },
+  { nom: "Abomey-Calavi", lat: 6.4483, lon: 2.3556 }
+];
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
-  }).addTo(map);
+const carte = L.map('map').setView([9.3077, 2.3158], 7);
 
-  fetch('data/benin.geojson')
-    .then(response => response.json())
-    .then(beninBorders => {
-      L.geoJSON(beninBorders, {
-        style: {
-          color: 'gold',
-          weight: 3,
-          fillOpacity: 0
-        }
-      }).addTo(map);
-    })
-    .catch(error => console.error('Erreur chargement frontières Bénin :', error));
+// Carte de base
+L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap'
+}).addTo(carte);
 
-  fetch('data/departements_benin.geojson')
-    .then(response => response.json())
-    .then(departements => {
-      L.geoJSON(departements, {
-        style: {
-          color: 'gold',
-          weight: 2,
-          fillOpacity: 0
-        }
-      }).addTo(map);
-    })
-    .catch(error => console.error('Erreur chargement départements :', error));
+// Marqueurs
+const marqueurs = {};
 
-  const goldIcon = L.icon({
-    iconUrl: 'assets/images/gold-marker.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
-    shadowSize: [41, 41]
-  });
+villes.forEach(ville => {
+  const couleur = ville.premium ? 'gold' : 'blue';
+  const marker = L.circleMarker([ville.lat, ville.lon], {
+    radius: 10,
+    color: couleur,
+    fillColor: couleur,
+    fillOpacity: 0.8
+  }).addTo(carte).bindPopup(ville.nom);
+  marqueurs[ville.nom] = marker;
 
-  fetch("data/villes.json")
-    .then(response => {
-      if (!response.ok) throw new Error("Erreur de chargement du fichier villes.json");
-      return response.json();
-    })
-    .then(villes => {
-      const select = document.getElementById("ville-select");
-
-      villes.forEach(ville => {
-        const option = document.createElement("option");
-        option.value = JSON.stringify({ lat: ville.lat, lng: ville.lng });
-        option.textContent = ville.nom;
-        select.appendChild(option);
-
-        const marker = ville.nom === "Cotonou"
-  ? L.marker([ville.lat, ville.lng], { icon: goldIcon })
-  : L.marker([ville.lat, ville.lng]);
-
-marker.addTo(map).bindPopup(`
-  <div style="text-align: center;">
-    <img src="${ville.image}" alt="${ville.nom}" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 10px;">
-    <b>${ville.nom}</b><br>${ville.description}
-  </div>
-`);
-
-marker.on('click', function() {
-  triggerFlash(); // ← Ajoute ici aussi
+  // Ajout dans le menu
+  const option = document.createElement("option");
+  option.value = ville.nom;
+  option.textContent = ville.nom + (ville.premium ? " (Premium)" : "");
+  document.getElementById("ville-select").appendChild(option);
 });
 
+// GéoJSON pour frontières
+fetch('assets/geojson/benin-border.geojson')
+  .then(response => response.json())
+  .then(data => {
+    L.geoJSON(data, {
+      style: {
+        color: "gold",
+        weight: 3,
+        opacity: 0.9
+      }
+    }).addTo(carte);
+  });
 
-      select.addEventListener("change", function() {
-  if (this.value) {
-    const coords = JSON.parse(this.value);
-    map.setView([coords.lat, coords.lng], 13);
-    triggerFlash(); // ← Ajoute ici
+fetch('assets/geojson/departements.geojson')
+  .then(response => response.json())
+  .then(data => {
+    L.geoJSON(data, {
+      style: {
+        color: "#ffaa00",
+        weight: 1,
+        dashArray: '4'
+      }
+    }).addTo(carte);
+  });
+
+// Gestion sélection ville
+document.getElementById("ville-select").addEventListener("change", function () {
+  const nomVille = this.value;
+  if (nomVille && marqueurs[nomVille]) {
+    const marker = marqueurs[nomVille];
+    carte.setView(marker.getLatLng(), 13);
+    marker.openPopup();
   } else {
-    map.setView([7.5, 2.5], 7);
+    carte.setView([9.3077, 2.3158], 7);
   }
 });
-
-      });
-    })
-    .catch(error => console.error("Erreur lors du chargement des villes :", error));
-});
-
-// Partie Musique
-document.addEventListener("DOMContentLoaded", function() {
-  const audio = document.getElementById('audio');
-  const playBtn = document.getElementById('play-btn');
-  const prevBtn = document.getElementById('prev-btn');
-  const nextBtn = document.getElementById('next-btn');
-  const trackName = document.getElementById('track-name');
-  const artistName = document.getElementById('artist-name');
-  const musicPlayer = document.querySelector('.music-player');
-
-  const tracks = [
-    { title: 'Djidjoho', artist: 'Sagbohan Danialou', src: 'assets/musics/sagbohan1.mp3' },
-    { title: 'Wombo Lombo', artist: 'Angélique Kidjo', src: 'assets/musics/kidjo1.mp3' },
-    { title: 'Bon choix', artist: 'First King', src: 'assets/musics/firstking1.mp3' }
-  ];
-
-  let currentTrack = 0;
-
-  function loadTrack(index) {
-    const track = tracks[index];
-    audio.src = track.src;
-    trackName.textContent = track.title;
-    artistName.textContent = track.artist;
-    playBtn.textContent = '▶';
-  }
-
-  function playPause() {
-    if (audio.paused) {
-      audio.play();
-      playBtn.textContent = '❚❚';
-    } else {
-      audio.pause();
-      playBtn.textContent = '▶';
-    }
-  }
-
-  function prevTrack() {
-    currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
-    loadTrack(currentTrack);
-    audio.play();
-    playBtn.textContent = '❚❚';
-  }
-
-  function nextTrack() {
-    currentTrack = (currentTrack + 1) % tracks.length;
-    loadTrack(currentTrack);
-    audio.play();
-    playBtn.textContent = '❚❚';
-  }
-
-  // Lancer musique automatique au démarrage
-  loadTrack(currentTrack);
-  audio.volume = 0.5; // Volume bas par défaut
-  audio.play().catch(err => console.log('Lecture auto bloquée par navigateur.', err));
-
-  playBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    playPause();
-  });
-  prevBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    prevTrack();
-  });
-  nextBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    nextTrack();
-  });
-
-  audio.addEventListener('ended', nextTrack);
-
-  // Ouvrir/Fermer lecteur
-  musicPlayer.addEventListener('click', () => {
-    musicPlayer.classList.toggle('open');
-  });
-});
-
-// Fonction pour déclencher un flash
-function triggerFlash() {
-  const flash = document.getElementById('flash');
-  flash.style.display = 'block';
-  flash.classList.remove('flash-effect'); // reset
-  void flash.offsetWidth; // trick pour re-déclencher l'animation
-  flash.classList.add('flash-effect');
-  setTimeout(() => {
-    flash.style.display = 'none';
-  }, 500); // cacher après animation
-}
-
-function triggerFlash() {
-  const flash = document.createElement('div');
-  flash.className = 'flash-effect';
-  document.body.appendChild(flash);
-  setTimeout(() => {
-    flash.remove();
-  }, 500); // Temps identique à l'animation
-}
