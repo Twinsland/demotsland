@@ -68,3 +68,19 @@ document.getElementById("ville-select").addEventListener("change", function () {
     carte.setView([9.3077, 2.3158], 7);
   }
 });
+
+// Les musiques
+const musiques = [
+  {
+    titre: "Sagbohan Danialou - Mystique",
+    fichier: "assets/musics/mystique.mp3",
+  },
+  {
+    titre: "Angélique Kidjo - Agolo",
+    fichier: "assets/musics/agolo.mp3",
+  },
+  {
+    titre: "First King - Vibe du Bénin",
+    fichier: "assets/musics/vibe-benin.mp3",
+  }
+];
