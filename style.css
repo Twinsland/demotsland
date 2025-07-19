@@ -293,3 +293,70 @@
   background: white;
   color: black;
 }
+
+.ville-dropdown {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(145deg, #0a0a15, #1c1c30);
+  border: 2px solid gold;
+  border-radius: 12px;
+  padding: 15px 20px;
+  color: gold;
+  cursor: pointer;
+  font-size: 1.2em;
+  user-select: none;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.ville-dropdown:hover {
+  background: #1a1a2e;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.ville-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #11142b;
+  border-radius: 0 0 12px 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  z-index: 10;
+}
+
+.ville-dropdown.open .ville-options {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.ville-options li {
+  padding: 12px 20px;
+  border-top: 1px solid rgba(255, 215, 0, 0.1);
+  background: #1f1f3a;
+  color: gold;
+  cursor: pointer;
+  animation: cascadeDrop 0.3s ease forwards;
+}
+
+.ville-options li:hover {
+  background: #292950;
+  color: white;
+}
+
+@keyframes cascadeDrop {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
