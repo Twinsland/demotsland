@@ -66,57 +66,60 @@
   box-shadow: 0 0 25px gold;
 }
 
-/* Lecteur de musique repliable */
+/* --- Lecteur de musique style PS4 --- */
 .music-player {
   position: fixed;
-  bottom: 15px;
-  right: 15px;
-  background: rgba(0, 0, 0, 0.8);
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(145deg, #0d0d15, #1a1a2e);
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   padding: 10px;
-  box-shadow: 0 0 15px gold;
+  box-shadow: 0 0 20px rgba(0, 150, 255, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: #ffffff;
   cursor: pointer;
   transition: all 0.4s ease;
   overflow: hidden;
   z-index: 1000;
-  animation: pop 0.5s ease;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
 }
 
-/* Petite icône play */
+/* Icône Play minimaliste */
 .music-player::before {
   content: '▶';
-  font-size: 20px;
-  color: rgba(255, 255, 255, 0.3);
+  font-size: 22px;
+  color: rgba(0, 150, 255, 0.4);
   position: absolute;
+  transition: opacity 0.3s;
 }
 
 /* Quand le lecteur est ouvert */
 .music-player.open {
-  width: 260px;
+  width: 280px;
   height: auto;
-  border-radius: 30px;
+  border-radius: 20px;
   padding: 15px 20px;
   flex-direction: row;
   justify-content: flex-start;
   gap: 20px;
+  box-shadow: 0 0 25px rgba(0, 150, 255, 0.8);
+  background: linear-gradient(145deg, #121222, #1f1f3a);
 }
 
-/* Cache l'icône Play quand ouvert */
+/* Cache l'icône Play */
 .music-player.open::before {
-  display: none;
+  opacity: 0;
 }
 
-/* Informations sur la musique */
+/* Infos sur la musique */
 .player-info {
   display: none;
   flex-direction: column;
-  max-width: 120px;
+  max-width: 140px;
   overflow: hidden;
 }
 
@@ -125,13 +128,14 @@
 }
 
 .player-info span {
-  font-size: 12px;
+  font-size: 13px;
+  color: #b0c4ff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Contrôles du lecteur */
+/* Contrôles */
 .player-controls {
   display: none;
   flex-direction: row;
@@ -143,24 +147,28 @@
 }
 
 .player-controls button {
-  background-color: gold;
+  background: radial-gradient(circle, #0099ff, #0059b3);
   border: none;
-  padding: 8px;
+  padding: 10px;
   border-radius: 50%;
   cursor: pointer;
-  color: black;
-  font-weight: bold;
+  color: white;
   font-size: 14px;
-  transition: background 0.3s;
+  box-shadow: 0 0 10px rgba(0, 150, 255, 0.4);
+  transition: all 0.3s;
 }
 
 .player-controls button:hover {
-  background-color: white;
+  background: #00bfff;
+  box-shadow: 0 0 15px rgba(0, 150, 255, 0.7);
 }
 
 .player-controls button:disabled {
-  background-color: gray;
+  background: #2c2f4a;
+  color: #777;
+  box-shadow: none;
 }
+
 
 /* Animation d'apparition du header */
 @keyframes fadeDown {
