@@ -143,6 +143,40 @@ window.addEventListener("DOMContentLoaded", () => {
   jouerMusique(); // Ajoute cette ligne pour lecture automatique
 });
 
+const dropdown = document.querySelector('.ville-dropdown');
+const selected = document.querySelector('.ville-selected');
+const optionsList = document.getElementById('ville-options');
+const realSelect = document.createElement('select');
+realSelect.id = "ville-select";
+realSelect.style.display = "none";
+document.body.appendChild(realSelect);
+
+// Injecter les villes dans la fausse dropdown
+villes.forEach((ville, i) => {
+  const li = document.createElement("li");
+  li.textContent = ville.nom + (ville.premium ? " (Premium)" : "");
+  li.style.animationDelay = `${i * 0.05}s`; // cascade
+  li.addEventListener("click", () => {
+    selected.textContent = ville.nom + (ville.premium ? " (Premium)" : "");
+    carte.setView([ville.lat, ville.lon], 13);
+    marqueurs[ville.nom].openPopup();
+    dropdown.classList.remove("open");
+  });
+  optionsList.appendChild(li);
+});
+
+// Toggle dropdown
+selected.addEventListener("click", () => {
+  dropdown.classList.toggle("open");
+});
+
+// Fermer dropdown si clic extérieur
+document.addEventListener("click", (e) => {
+  if (!dropdown.contains(e.target)) {
+    dropdown.classList.remove("open");
+  }
+});
+
 const lecteur = document.querySelector('.music-player');
 
 lecteur.addEventListener('click', () => {
