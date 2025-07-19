@@ -68,3 +68,78 @@ document.getElementById("ville-select").addEventListener("change", function () {
     carte.setView([9.3077, 2.3158], 7);
   }
 });
+
+// Les musiques
+const musiques = [
+  {
+    titre: "Sagbohan Danialou - Mystique",
+    fichier: "assets/musics/mystique.mp3",
+  },
+  {
+    titre: "Angélique Kidjo - Agolo",
+    fichier: "assets/musics/agolo.mp3",
+  },
+  {
+    titre: "First King - Vibe du Bénin",
+    fichier: "assets/musics/vibe-benin.mp3",
+  }
+];
+
+let indexMusique = 0;
+const audio = document.getElementById("audio");
+const playBtn = document.getElementById("play-btn");
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
+const trackName = document.getElementById("track-name");
+const artistName = document.getElementById("artist-name");
+
+function chargerMusique(index) {
+  const musique = musiques[index];
+  audio.src = musique.fichier;
+  const [artiste, titre] = musique.titre.split(" - ");
+  artistName.textContent = artiste || "Artiste inconnu";
+  trackName.textContent = titre || "Titre inconnu";
+}
+
+function jouerMusique() {
+  audio.play();
+  playBtn.innerHTML = "⏸"; // Icône pause
+}
+
+function pauseMusique() {
+  audio.pause();
+  playBtn.innerHTML = "▶"; // Icône lecture
+}
+
+function musiqueSuivante() {
+  indexMusique = (indexMusique + 1) % musiques.length;
+  chargerMusique(indexMusique);
+  jouerMusique();
+}
+
+function musiquePrecedente() {
+  indexMusique = (indexMusique - 1 + musiques.length) % musiques.length;
+  chargerMusique(indexMusique);
+  jouerMusique();
+}
+
+playBtn.addEventListener("click", () => {
+  if (audio.paused) {
+    jouerMusique();
+  } else {
+    pauseMusique();
+  }
+});
+
+nextBtn.addEventListener("click", musiqueSuivante);
+prevBtn.addEventListener("click", musiquePrecedente);
+
+window.addEventListener("DOMContentLoaded", () => {
+  chargerMusique(indexMusique);
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  chargerMusique(indexMusique);
+  jouerMusique(); // Ajoute cette ligne pour lecture automatique
+});
+
