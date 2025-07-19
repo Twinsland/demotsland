@@ -143,3 +143,12 @@ window.addEventListener("DOMContentLoaded", () => {
   jouerMusique(); // Ajoute cette ligne pour lecture automatique
 });
 
+const lecteur = document.querySelector('.music-player');
+
+lecteur.addEventListener('click', () => {
+  lecteur.classList.toggle('open');
+});
+
+[playBtn, prevBtn, nextBtn].forEach(btn => {
+  btn.addEventListener("click", e => e.stopPropagation());
+});
