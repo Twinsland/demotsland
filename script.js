@@ -175,14 +175,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function chargerVille(ville) {
     // Exemple : affiche la ville ou effectue une action
     console.log("Ville sélectionnée :", ville);
+    fetch(listeGeoJSON[ville])
+  .then(response => response.json())
+  .then(data => {
+    L.geoJSON(data).addTo(map);
+  });
 
-    // Tu peux y associer une fonction pour changer de couche, d'image, de données GeoJSON, etc.
-    // Exemple si tu veux charger une couche GeoJSON spécifique :
-    // map.eachLayer((layer) => {
-    //   if (layer.feature) map.removeLayer(layer); // Nettoyer
-    // });
-    // L.geoJSON(listeGeoJSON[ville]).addTo(map);
-  }
 
   // Pour fermer le menu si clic en dehors
   window.addEventListener("click", (e) => {
