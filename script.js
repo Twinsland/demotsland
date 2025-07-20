@@ -152,3 +152,42 @@ lecteur.addEventListener('click', () => {
 [playBtn, prevBtn, nextBtn].forEach(btn => {
   btn.addEventListener("click", e => e.stopPropagation());
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const dropdown = document.getElementById("villeDropdown");
+  const options = document.getElementById("villeOptions");
+
+  dropdown.addEventListener("click", () => {
+    dropdown.classList.toggle("open");
+  });
+
+  options.querySelectorAll("li").forEach(item => {
+    item.addEventListener("click", () => {
+      const villeChoisie = item.dataset.ville;
+      dropdown.childNodes[0].textContent = item.textContent;
+      dropdown.classList.remove("open");
+
+      // Appelle ici ta logique de chargement de la ville sélectionnée
+      chargerVille(villeChoisie);
+    });
+  });
+
+  function chargerVille(ville) {
+    // Exemple : affiche la ville ou effectue une action
+    console.log("Ville sélectionnée :", ville);
+
+    // Tu peux y associer une fonction pour changer de couche, d'image, de données GeoJSON, etc.
+    // Exemple si tu veux charger une couche GeoJSON spécifique :
+    // map.eachLayer((layer) => {
+    //   if (layer.feature) map.removeLayer(layer); // Nettoyer
+    // });
+    // L.geoJSON(listeGeoJSON[ville]).addTo(map);
+  }
+
+  // Pour fermer le menu si clic en dehors
+  window.addEventListener("click", (e) => {
+    if (!dropdown.contains(e.target)) {
+      dropdown.classList.remove("open");
+    }
+  });
+});
