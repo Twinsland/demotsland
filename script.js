@@ -191,3 +191,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+const listeGeoJSON = {
+  "cotonou": "data/cotonou.geojson",
+  "porto-novo": "data/porto-novo.geojson",
+  // etc.
+};
