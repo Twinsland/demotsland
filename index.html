@@ -20,10 +20,15 @@
   </div>
 
   <div class="music-player">
-    <p id="titreMusique">🎵 Cliquez pour écouter</p>
-    <audio id="lecteurMusique" controls>
-      Votre navigateur ne prend pas en charge l'audio.
-    </audio>
+    <div class="player-info">
+      <span id="track-name">Titre</span> | <span id="artist-name">Artiste</span>
+    </div>
+    <div class="player-controls">
+      <button id="prev-btn">❮</button>
+      <button id="play-btn">▶</button>
+      <button id="next-btn">❯</button>
+    </div>
+    <audio id="audio"></audio>
   </div>
 
   <script src="script.js"></script>
