@@ -38,13 +38,10 @@ body {
   color: #f0f0f0;
 }
 
-/* Carte */
 #carte-container {
-  position: relative;
-  margin: 30px auto 20px auto;
-  width: 90%;
-  max-width: 1200px;
-}
+      margin: 10px auto;
+      max-width: 800px;
+    }
 
 #ville-select {
   margin-bottom: 10px;
@@ -62,12 +59,10 @@ body {
 }
 
 #map {
-  width: 200%;
-  height: 650px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 0 25px gold;
-}
+      height: 500px;
+      margin-top: 10px;
+      border: 3px solid gold;
+    }
 
 /* Lecteur de musique repliable */
 .music-player {
