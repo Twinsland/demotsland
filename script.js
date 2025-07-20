@@ -23,9 +23,9 @@ function triggerFlash() {
 
 // Musiques
 const musiques = [
-  { titre: "Sagbohan Danialou - Mystique", fichier: "assets/musics/mystique.mp3" },
-  { titre: "Angélique Kidjo - Agolo", fichier: "assets/musics/agolo.mp3" },
-  { titre: "First King - Vibe du Bénin", fichier: "assets/musics/vibe-benin.mp3" }
+  { titre: "Sagbohan Danialou - Djidjoho", fichier: "assets/musics/sagbohan1.mp3" },
+  { titre: "Angélique Kidjo - Agolo", fichier: "assets/musics/kidjo1.mp3" },
+  { titre: "First King - Bon Choix", fichier: "assets/musics/firstking1.mp3" }
 ];
 
 let currentTrack = 0;
