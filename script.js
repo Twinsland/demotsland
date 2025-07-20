@@ -8,7 +8,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Icône dorée spéciale pour Cotonou (par exemple)
 const goldIcon = L.icon({
-  iconUrl: 'assets/images/icon-gold.png',
+  iconUrl: 'assets/images/gold-marker.png',
   iconSize: [30, 40],
   iconAnchor: [15, 40],
   popupAnchor: [0, -40]
