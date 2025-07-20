@@ -1,62 +1,299 @@
-body {
+/* Landing Page Style */
+.landing-page {
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #0b0b1f;
+  overflow: hidden;
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+}
+
+/* Logo et entête */
+#game-header {
+  padding: 20px 10px;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
+  animation: fadeDown 1.2s ease forwards;
+}
+
+#game-logo {
+  height: 80px;
+  width: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+  margin-bottom: 10px;
+}
+
+#game-header h1 {
+  margin: 10px 0 5px 0;
+  font-size: 2.5em;
   color: gold;
-  text-align: center;
 }
 
-h1 {
-  margin: 20px 0;
-  font-size: 2em;
-  text-shadow: 0 0 10px gold;
+#game-header p {
+  margin: 0;
+  font-size: 1.2em;
+  color: #f0f0f0;
 }
 
-#mapContainer {
+/* Carte */
+#carte-container {
   position: relative;
-  width: 80%;
-  margin: 20px auto;
-  border: 4px solid gold;
+  margin: 30px auto 20px auto;
+  width: 90%;
+  max-width: 1200px;
+}
+
+#ville-select {
+  margin-bottom: 10px;
+  padding: 15px;
+  font-size: 1.2em;
+  border-radius: 12px;
+  border: none;
+  background: rgba(0, 0, 0, 0.7);
+  color: gold;
+  appearance: none;
+  background-image: url('assets/images/dropdown-arrow.png');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 15px;
+}
+
+#map {
+  width: 100%;
+  height: 650px;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+  box-shadow: 0 0 25px gold;
 }
 
-#beninMap {
-  width: 100%;
-  height: auto;
+/* --- Lecteur de musique style PS4 --- */
+.music-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(145deg, #0d0d15, #1a1a2e);
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  padding: 10px;
+  box-shadow: 0 0 20px rgba(0, 150, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  overflow: hidden;
+  z-index: 1000;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
 }
 
-#villeMarkers {
+/* Icône Play minimaliste */
+.music-player::before {
+  content: '▶';
+  font-size: 22px;
+  color: rgba(0, 150, 255, 0.4);
   position: absolute;
+  transition: opacity 0.3s;
+}
+
+/* Quand le lecteur est ouvert */
+.music-player.open {
+  width: 280px;
+  height: auto;
+  border-radius: 20px;
+  padding: 15px 20px;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 20px;
+  box-shadow: 0 0 25px rgba(0, 150, 255, 0.8);
+  background: linear-gradient(145deg, #121222, #1f1f3a);
+}
+
+/* Cache l'icône Play */
+.music-player.open::before {
+  opacity: 0;
+}
+
+/* Infos sur la musique */
+.player-info {
+  display: none;
+  flex-direction: column;
+  max-width: 140px;
+  overflow: hidden;
+}
+
+.music-player.open .player-info {
+  display: flex;
+}
+
+.player-info span {
+  font-size: 13px;
+  color: #b0c4ff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Contrôles */
+.player-controls {
+  display: none;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.music-player.open .player-controls {
+  display: flex;
+}
+
+.player-controls button {
+  background: radial-gradient(circle, #0099ff, #0059b3);
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: white;
+  font-size: 14px;
+  box-shadow: 0 0 10px rgba(0, 150, 255, 0.4);
+  transition: all 0.3s;
+}
+
+.player-controls button:hover {
+  background: #00bfff;
+  box-shadow: 0 0 15px rgba(0, 150, 255, 0.7);
+}
+
+.player-controls button:disabled {
+  background: #2c2f4a;
+  color: #777;
+  box-shadow: none;
+}
+
+
+/* Animation d'apparition du header */
+@keyframes fadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation pop légère */
+@keyframes pop {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Flash effet style caméra */
+.flash-effect {
+  position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2000;
+  animation: flash 0.5s ease;
 }
 
-.marker {
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  background-color: red;
-  border: 2px solid white;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
+/* Animation Flash */
+@keyframes flash {
+  0% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
-.marker::after {
-  content: attr(data-name);
-  position: absolute;
-  top: 20px;
+/* Effet flash léger style caméra */
+.flash-effect {
+  position: fixed;
+  top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: gold;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 0.75em;
+  width: 100%;
+  height: 100%;
+  background: white;
+  opacity: 0.8;
+  pointer-events: none;
+  animation: flash 0.5s ease;
+  z-index: 2000;
 }
 
-/* Menu déroulant cascade style */
+@keyframes flash {
+  0% { opacity: 0.8; }
+  50% { opacity: 0.4; }
+  100% { opacity: 0; }
+}
+#bg-video {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.intro-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 40px gold;
+}
+
+.intro-overlay .logo {
+  width: 160px;
+  margin-bottom: 20px;
+}
+
+.intro-overlay h1 {
+  font-size: 2.5em;
+  color: gold;
+  margin-bottom: 10px;
+}
+
+.slogan {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+
+.start-btn {
+  background: gold;
+  color: black;
+  font-weight: bold;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.start-btn:hover {
+  background: white;
+  color: black;
+}
+
 .ville-dropdown {
   position: relative;
   display: inline-block;
@@ -68,28 +305,30 @@ h1 {
   cursor: pointer;
   font-size: 1.2em;
   user-select: none;
-  margin-bottom: 20px;
-  transition: all 0.3s ease;
   box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  transition: all 0.3s ease;
 }
 
 .ville-dropdown:hover {
   background: #1a1a2e;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
 }
 
 .ville-options {
   position: absolute;
-  width: 100%;
+  top: 100%;
+  left: 0;
+  right: 0;
   background: #11142b;
   border-radius: 0 0 12px 12px;
-  list-style: none;
-  padding: 0;
   margin: 0;
-  max-height: 0;
+  padding: 0;
+  list-style: none;
   overflow: hidden;
+  max-height: 0;
   opacity: 0;
   transition: max-height 0.4s ease, opacity 0.4s ease;
-  z-index: 100;
+  z-index: 10;
 }
 
 .ville-dropdown.open .ville-options {
@@ -113,34 +352,11 @@ h1 {
 
 @keyframes cascadeDrop {
   from {
-    transform: translateY(-10px);
+    transform: translateX(-20px);
     opacity: 0;
   }
   to {
-    transform: translateY(0);
+    transform: translateX(0);
     opacity: 1;
   }
 }
-
-.music-player {
-      text-align: center;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    border-radius: 50%;
-    width: 70px;
-    height: 70px;
-    box-shadow: 0 0 20px rgba(0, 150, 255, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    overflow: hidden;
-    z-index: 1000;
-    font-family: 'Segoe UI', 'Roboto', sans-serif;
-    margin-top: 30px;
-    background: #222;
-    padding: 15px;
-    border-top: 2px solid gold;

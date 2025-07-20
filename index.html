@@ -1,22 +1,93 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Twinsland Map</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Twinsland - Commencez l'aventure</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    #game-header {
+      background: black;
+      padding: 10px;
+    }
+
+    #game-logo {
+      height: 60px;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin: 20px 0 10px;
+      color: gold;
+    }
+
+    #carte-container {
+      margin: 10px auto;
+      max-width: 800px;
+    }
+
+    #ville-select {
+      padding: 10px;
+      font-size: 1.1em;
+      background: linear-gradient(45deg, #222, #555);
+      color: gold;
+      border: 2px solid gold;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    #map {
+      height: 500px;
+      margin-top: 10px;
+      border: 3px solid gold;
+    }
+
+    .music-player {
+      margin-top: 30px;
+      background: #222;
+      padding: 15px;
+      border-top: 2px solid gold;
+    }
+
+    .player-controls button {
+      font-size: 1.5em;
+      padding: 8px;
+      margin: 0 10px;
+      color: gold;
+      background: #111;
+      border: 2px solid gold;
+      border-radius: 50%;
+    }
+
+    .player-info {
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
-  <h1>Bienvenue à Twinsland</h1>
+  <header id="game-header">
+    <img src="assets/images/logo-twinsland.png" alt="Twinsland Logo" id="game-logo">
+  </header>
 
-  <div class="ville-dropdown" id="villeDropdown">
-    Sélectionner une ville
-    <ul class="ville-options" id="villeOptions"></ul>
-  </div>
+  <h1>Bienvenue dans Twinsland</h1>
+  <p>Explorez les villes, découvrez les lieux, et laissez la musique vous guider.</p>
 
-  <div id="mapContainer">
-    <img src="assets/images/map-benin.png" alt="Carte du Bénin" id="beninMap" />
-    <div id="villeMarkers"></div>
+  <div id="carte-container">
+    <div class="ville-dropdown">
+  <div class="ville-selected">Choisissez une ville ▾</div>
+  <ul class="ville-options hidden" id="ville-options"></ul>
+</div>
+    <div id="map"></div>
   </div>
 
   <div class="music-player">
@@ -24,13 +95,14 @@
       <span id="track-name">Titre</span> | <span id="artist-name">Artiste</span>
     </div>
     <div class="player-controls">
-      <button id="prev-btn">❮</button>
-      <button id="play-btn">▶</button>
-      <button id="next-btn">❯</button>
+      <button id="prev-btn">&#10094;</button>
+      <button id="play-btn">&#9654;</button>
+      <button id="next-btn">&#10095;</button>
     </div>
     <audio id="audio"></audio>
   </div>
 
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
