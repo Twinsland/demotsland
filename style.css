@@ -7,7 +7,7 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
-  color: #000808;
+  color: #eee;
 }
 
 /* Logo et entête */
@@ -35,7 +35,7 @@ body {
 #game-header p {
   margin: 0;
   font-size: 1.2em;
-  color: #000808;
+  color: #1c2525;
 }
 
 #carte-container {
