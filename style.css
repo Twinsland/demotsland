@@ -235,10 +235,10 @@ body {
 /* Conteneur du menu positionné sur la carte */
 #ville-menu-container {
   position: absolute;
-  top: 120px;
+  top: 130px;
   left: 20px;
   z-index: 1000;
-  width: 205px;
+  width: 220px;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 8px;
   overflow: hidden;
