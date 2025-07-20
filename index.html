@@ -1,114 +1,40 @@
+index.html:
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Twinsland - Commencez l'aventure</title>
+  <title>Twinsland - Démo Jouable</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <style>
-    body {
-      background-color: #111;
-      color: white;
-      font-family: 'Orbitron', sans-serif;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
-
-    #game-header {
-      background: black;
-      padding: 10px;
-    }
-
-    #game-logo {
-      height: 60px;
-    }
-
-    h1 {
-      font-size: 2em;
-      margin: 20px 0 10px;
-      color: gold;
-    }
-
-    #carte-container {
-      margin: 10px auto;
-      max-width: 800px;
-    }
-
-    #ville-select {
-      padding: 10px;
-      font-size: 1.1em;
-      background: linear-gradient(45deg, #222, #555);
-      color: gold;
-      border: 2px solid gold;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-
-    #map {
-      height: 500px;
-      margin-top: 10px;
-      border: 3px solid gold;
-    }
-
-    .music-player {
-      margin-top: 30px;
-      background: #222;
-      padding: 15px;
-      border-top: 2px solid gold;
-    }
-
-    .player-controls button {
-      font-size: 1.5em;
-      padding: 8px;
-      margin: 0 10px;
-      color: gold;
-      background: #111;
-      border: 2px solid gold;
-      border-radius: 50%;
-    }
-
-    .player-info {
-      margin-bottom: 10px;
-      font-style: italic;
-    }
-  </style>
 </head>
+  <div id="flash" class="flash-effect" style="display: none;"></div>
 <body>
-  <header id="game-header">
-    <img src="assets/images/logo-twinsland.png" alt="Twinsland Logo" id="game-logo">
-  </header>
-
+<header id="game-header">
+  <img src="assets/images/logo-twinsland.png" alt="Twinsland Logo" id="game-logo">
   <h1>Bienvenue dans Twinsland</h1>
   <p>Explorez les villes, découvrez les lieux, et laissez la musique vous guider.</p>
+</header>
 
-  <div class="ville-dropdown" id="villeDropdown">
-  Choisissez une ville
-  <ul class="ville-options" id="villeOptions">
-    <li data-ville="cotonou">Cotonou</li>
-    <li data-ville="porto-novo">Porto-Novo</li>
-    <li data-ville="parakou">Parakou</li>
-    <li data-ville="abomey-calavi">Abomey-Calavi</li>
-  </ul>
+<div id="carte-container">
+  <select id="ville-select">
+    <option value="">Choisissez une ville</option>
+  </select>
+  <div id="map"></div>
 </div>
 
-    
-    <div id="map"></div>
+<div class="music-player">
+  <div class="player-info">
+    <span id="track-name">Titre</span> | <span id="artist-name">Artiste</span>
   </div>
-
-  <div class="music-player">
-    <div class="player-info">
-      <span id="track-name">Titre</span> | <span id="artist-name">Artiste</span>
-    </div>
-    <div class="player-controls">
-      <button id="prev-btn">&#10094;</button>
-      <button id="play-btn">&#9654;</button>
-      <button id="next-btn">&#10095;</button>
-    </div>
-    <audio id="audio"></audio>
+  <div class="player-controls">
+    <button id="prev-btn">&#10094;</button>
+    <button id="play-btn">&#9654;</button>
+    <button id="next-btn">&#10095;</button>
   </div>
+  <audio id="audio" loop></audio>
+</div>
 
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="script.js"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
