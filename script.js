@@ -99,37 +99,37 @@ fetch("data/benin.geojson")
     console.error("Erreur lors du chargement du fichier GeoJSON du Bénin :", error);
   });
 
-  
-  // Charger les villes
   fetch("data/villes.json")
-    .then(response => response.json())
-    .then(villes => {
-      villes.forEach(ville => {
-        const li = document.createElement('li');
+  .then(response => response.json())
+  .then(data => {
+    data.forEach(ville => {
+      if (ville.lat && ville.lng) {
+        const marker = L.marker([ville.lat, ville.lng], {
+          icon: goldIcon
+        }).addTo(map);
+
+        marker.bindPopup(`
+          <div style="color: gold;">
+            <strong>${ville.nom}</strong><br>
+            ${ville.infos}
+          </div>
+        `);
+
+        // Ajouter la ville au menu déroulant
+        const li = document.createElement("li");
         li.textContent = ville.nom;
-
-        li.addEventListener('click', () => {
+        li.addEventListener("click", () => {
           map.setView([ville.lat, ville.lng], 13);
-          triggerFlash();
-          menuContainer.classList.remove('open');
+          marker.openPopup();
+          flashMap([ville.lat, ville.lng]);
+          villeMenu.classList.remove("open");
         });
-
-        villeList.appendChild(li);
-
-        const icon = ville.nom === "Cotonou" ? goldIcon : undefined;
-
-        L.marker([ville.lat, ville.lng], { icon: icon })
-          .addTo(map)
-          .bindPopup(`
-            <div style="text-align: center;">
-              <img src="${ville.image}" alt="${ville.nom}" style="width: 100%; border-radius: 10px; margin-bottom: 10px;">
-              <b>${ville.nom}</b><br>${ville.description}
-            </div>
-          `)
-          .on('click', triggerFlash);
-      });
-    })
-    .catch(error => {
-      console.error("Erreur de chargement des villes :", error);
+        villeOptions.appendChild(li);
+      } else {
+        console.warn(`Coordonnées manquantes pour la ville : ${ville.nom}`);
+      }
     });
-});
+  })
+  .catch(error => {
+    console.error("Erreur lors du chargement des villes :", error);
+  });
