@@ -237,7 +237,7 @@ body {
   position: relative;
   margin: 20px auto;
   width: fit-content;
-  z-index: 999;
+  z-index: 99;
 }
 
 #ville-menu-toggle {
