@@ -82,6 +82,24 @@ document.addEventListener("DOMContentLoaded", function () {
     menuContainer.classList.toggle('open');
   });
 
+  // Afficher la silhouette du Bénin à partir du GeoJSON
+fetch("data/benin.geojson")
+  .then(response => response.json())
+  .then(data => {
+    L.geoJSON(data, {
+      style: {
+        color: "gold",
+        weight: 2,
+        fillColor: "rgba(255, 215, 0, 0.3)",
+        fillOpacity: 0.4
+      }
+    }).addTo(map);
+  })
+  .catch(error => {
+    console.error("Erreur lors du chargement du fichier GeoJSON du Bénin :", error);
+  });
+
+  
   // Charger les villes
   fetch("data/villes.json")
     .then(response => response.json())
