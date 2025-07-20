@@ -82,15 +82,12 @@
   <h1>Bienvenue dans Twinsland</h1>
   <p>Explorez les villes, découvrez les lieux, et laissez la musique vous guider.</p>
 
-  <div class="ville-dropdown" id="villeDropdown">
-  Choisissez une ville
-  <ul class="ville-options" id="villeOptions">
-    <li data-ville="cotonou">Cotonou</li>
-    <li data-ville="porto-novo">Porto-Novo</li>
-    <li data-ville="parakou">Parakou</li>
-    <li data-ville="abomey-calavi">Abomey-Calavi</li>
-  </ul>
-</div>
+  <div id="carte-container">
+    <select id="ville-select">
+      <option value="">Choisissez une ville</option>
+    </select>
+    <div id="map"></div>
+  </div>
 
     
     <div id="map"></div>
