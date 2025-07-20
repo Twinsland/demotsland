@@ -234,11 +234,11 @@ body {
 
 /* Conteneur du menu cascade positionné sur la carte */
 .ville-menu {
-  position: fixed;
+  position: absolute;
   top: 160px;
   left: 20px;
   z-index: 1000;
-  width: 255;
+  width: 220px;
   background: rgba(86, 101, 115);
   border-radius: 10px;
   box-shadow: 0 0 10px gold;
