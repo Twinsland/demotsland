@@ -252,7 +252,7 @@ body {
 }
 
 #ville-menu-toggle {
-  background: gold;
+  background: #566573;
   border: none;
   padding: 10px;
   font-weight: bold;
@@ -272,7 +272,7 @@ body {
   padding: 8px 10px;
   cursor: pointer;
   border-top: 1px solid #ddd;
-  background: #566573;
+  background: gold;
 }
 
 #ville-list li:hover {
