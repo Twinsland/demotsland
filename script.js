@@ -1,117 +1,89 @@
-// Données de musique
+// Initialisation de la carte
+const map = L.map('map').setView([9.3077, 2.3158], 7);
+
+// Fond de carte
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+// Villes principales
+const villes = [
+  { nom: "Cotonou", coords: [6.3703, 2.3912] },
+  { nom: "Porto-Novo", coords: [6.4969, 2.6289] },
+  { nom: "Parakou", coords: [9.3467, 2.6090] },
+  { nom: "Abomey-Calavi", coords: [6.4483, 2.3554] }
+];
+
+// Ajout des marqueurs
+villes.forEach(ville => {
+  L.marker(ville.coords).addTo(map).bindPopup(`<b>${ville.nom}</b>`);
+});
+
+// 🎵 Musique
 const musiques = [
   {
     titre: "Sagbohan Danialou - Djidjoho",
-    fichier: "assets/musics/sagbohan1.mp3"
+    fichier: "assets/musics/sagbohan1.mp3",
   },
   {
     titre: "Angélique Kidjo - Agolo",
-    fichier: "assets/musics/kidjo1.mp3"
+    fichier: "assets/musics/kidjo1.mp3",
   },
   {
     titre: "First King - Bon Choix",
-    fichier: "assets/musics/firstking1.mp3"
+    fichier: "assets/musics/firstking1.mp3",
   }
 ];
 
-// Index de musique actuelle
-let indexMusique = 0;
+let audio = new Audio();
+const musicTitle = document.getElementById("music-title");
+const playButton = document.getElementById("play-button");
+const musicSelector = document.getElementById("music-selector");
 
-// Éléments DOM pour la musique
-const audio = document.getElementById("audio");
-const playBtn = document.getElementById("play-btn");
-const prevBtn = document.getElementById("prev-btn");
-const nextBtn = document.getElementById("next-btn");
-const artistName = document.getElementById("artist-name");
-const trackName = document.getElementById("track-name");
+// Remplir le sélecteur
+musiques.forEach((musique, index) => {
+  const option = document.createElement("option");
+  option.value = index;
+  option.textContent = musique.titre;
+  musicSelector.appendChild(option);
+});
 
-// Fonction pour charger une musique
-function chargerMusique(index) {
-  const musique = musiques[index];
-  audio.src = musique.fichier;
-  const [artiste, titre] = musique.titre.split(" - ");
-  artistName.textContent = artiste?.trim() || "Artiste inconnu";
-  trackName.textContent = titre?.trim() || "Titre inconnu";
+function playMusic(index) {
+  const selected = musiques[index];
+  audio.src = selected.fichier;
+  audio.play();
+  musicTitle.textContent = `🎵 En cours : ${selected.titre}`;
 }
 
-// Lecture / Pause
-function jouerMusique() {
-  audio.play().then(() => {
-    playBtn.innerHTML = "⏸";
-  }).catch(err => {
-    console.warn("Lecture bloquée :", err);
-  });
-}
+musicSelector.addEventListener("change", () => {
+  const index = musicSelector.value;
+  playMusic(index);
+});
 
-function pauseMusique() {
-  audio.pause();
-  playBtn.innerHTML = "▶";
-}
-
-// Toggle lecture
-playBtn.addEventListener("click", () => {
+playButton.addEventListener("click", () => {
   if (audio.paused) {
-    jouerMusique();
+    audio.play();
   } else {
-    pauseMusique();
+    audio.pause();
   }
 });
 
-// Musique suivante
-nextBtn.addEventListener("click", () => {
-  indexMusique = (indexMusique + 1) % musiques.length;
-  chargerMusique(indexMusique);
-  jouerMusique();
+// 🎮 Menu déroulant ville stylisé (style PS4)
+const villeDropdown = document.querySelector('.ville-dropdown');
+const villeOptions = document.querySelector('.ville-options');
+const villeLabel = document.querySelector('.ville-label');
+
+villeDropdown.addEventListener('click', () => {
+  villeDropdown.classList.toggle('open');
 });
 
-// Musique précédente
-prevBtn.addEventListener("click", () => {
-  indexMusique = (indexMusique - 1 + musiques.length) % musiques.length;
-  chargerMusique(indexMusique);
-  jouerMusique();
-});
-
-// Initialisation carte Leaflet
-const carte = L.map("map").setView([6.3703, 2.3912], 11);
-
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution: '&copy; OpenStreetMap contributors'
-}).addTo(carte);
-
-// Chargement d'une ville
-function chargerVille(nomVille) {
-  fetch(`data/${nomVille}.geojson`)
-    .then(response => response.json())
-    .then(data => {
-      L.geoJSON(data, {
-        onEachFeature: function (feature, layer) {
-          if (feature.properties && feature.properties.name) {
-            layer.bindPopup(feature.properties.name);
-          }
-        }
-      }).addTo(carte);
-    })
-    .catch(error => console.error("Erreur de chargement de la ville :", error));
-}
-
-// Menu déroulant personnalisé
-const dropdown = document.getElementById("villeDropdown");
-const options = document.getElementById("villeOptions");
-
-dropdown.addEventListener("click", () => {
-  options.classList.toggle("show");
-});
-
-options.querySelectorAll("li").forEach((li) => {
-  li.addEventListener("click", () => {
-    const ville = li.getAttribute("data-ville");
-    dropdown.firstChild.textContent = li.textContent;
-    options.classList.remove("show");
-    chargerVille(ville);
+villeOptions.querySelectorAll('li').forEach((li, index) => {
+  li.addEventListener('click', () => {
+    villeLabel.textContent = li.textContent;
+    villeDropdown.classList.remove('open');
+    const selectedVille = villes[index];
+    if (selectedVille) {
+      map.setView(selectedVille.coords, 14); // Zoom sur la ville sélectionnée
+    }
   });
-});
-
-// Chargement initial de la musique (sans auto-play)
-window.addEventListener("DOMContentLoaded", () => {
-  chargerMusique(indexMusique);
 });
