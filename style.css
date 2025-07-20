@@ -61,7 +61,7 @@ body {
 #map {
       height: 510px;
       margin-top: 10px;
-      border-radius: 20px solid gold;
+      border-radius: 3px solid gold;
     }
 
 /* Lecteur de musique repliable */
