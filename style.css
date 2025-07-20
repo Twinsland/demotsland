@@ -49,8 +49,8 @@ body {
   font-size: 1.2em;
   border-radius: 12px;
   border: none;
-  background: rgba(255, 215, 0);
-  color: rgba(86, 101, 115);
+  background: rgba(86, 101, 115);
+  color: gray;
   appearance: none;
   background-repeat: no-repeat;
   background-position: right 10px center;
