@@ -235,7 +235,7 @@ body {
 /* Conteneur du menu positionné sur la carte */
 #ville-menu-container {
   position: absolute;
-  top: 20px;
+  top: 90px;
   left: 20px;
   z-index: 1000;
   width: 200px;
