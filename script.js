@@ -6,7 +6,7 @@ const villes = [
   { nom: "Abomey-Calavi", x: 58, y: 80 }
 ];
 
-// Musiques
+// 🎵 Musique
 const musiques = [
   {
     titre: "Sagbohan Danialou - Djidjoho",
@@ -21,6 +21,39 @@ const musiques = [
     fichier: "assets/musics/firstking1.mp3",
   }
 ];
+
+let audio = new Audio();
+const musicTitle = document.getElementById("music-title");
+const playButton = document.getElementById("play-button");
+const musicSelector = document.getElementById("music-selector");
+
+// Remplir le sélecteur
+musiques.forEach((musique, index) => {
+  const option = document.createElement("option");
+  option.value = index;
+  option.textContent = musique.titre;
+  musicSelector.appendChild(option);
+});
+
+function playMusic(index) {
+  const selected = musiques[index];
+  audio.src = selected.fichier;
+  audio.play();
+  musicTitle.textContent = 🎵 En cours : ${selected.titre};
+}
+
+musicSelector.addEventListener("change", () => {
+  const index = musicSelector.value;
+  playMusic(index);
+});
+
+playButton.addEventListener("click", () => {
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
+});
 
 // Affichage des marqueurs
 const villeMarkersContainer = document.getElementById('villeMarkers');
@@ -51,22 +84,4 @@ villes.forEach(ville => {
     dropdown.classList.remove('open');
   });
   optionsList.appendChild(option);
-});
-
-// Menu musique
-const lecteur = document.getElementById('lecteurMusique');
-const titreMusique = document.getElementById('titreMusique');
-
-let index = 0;
-
-function jouerMusique(i) {
-  const musique = musiques[i];
-  lecteur.src = musique.fichier;
-  titreMusique.textContent = `🎵 ${musique.titre}`;
-  lecteur.play();
-}
-
-titreMusique.addEventListener('click', () => {
-  jouerMusique(index);
-  index = (index + 1) % musiques.length;
 });
