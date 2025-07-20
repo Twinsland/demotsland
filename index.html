@@ -10,15 +10,15 @@
 <body>
 <header id="game-header">
   <img src="assets/images/logo-twinsland.png" alt="Twinsland Logo" id="game-logo">
-  <h1>Bienvenue dans Twinsland</h1>
-  <p>Explorez les villes, découvrez les lieux, et laissez la musique vous guider.</p>
+  <div class="header-text">
+    <h1>Bienvenue dans Twinsland</h1>
+    <p>Explorez les villes, découvrez les lieux, et laissez la musique vous guider.</p>
+  </div>
 </header>
 
-<div id="carte-container">
-  <select id="ville-select">
-    <option value="">Choisissez une ville</option>
-  </select>
-  <div id="map"></div>
+<div id="ville-menu-container">
+  <div id="ville-menu-toggle">🎮 Sélectionner une ville</div>
+  <ul id="ville-list" class="ville-list"></ul>
 </div>
 
 <div class="music-player">
