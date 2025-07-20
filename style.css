@@ -62,7 +62,7 @@ body {
 }
 
 #map {
-  width: 100%;
+  width: 200%;
   height: 650px;
   border-radius: 20px;
   overflow: hidden;
