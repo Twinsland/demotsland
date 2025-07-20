@@ -234,7 +234,7 @@ body {
 
 /* Conteneur du menu cascade positionné sur la carte */
 .ville-menu {
-  position: absolute;
+  position: fixed;
   top: 160px;
   left: 20px;
   z-index: 1000;
