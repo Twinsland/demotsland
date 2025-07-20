@@ -2,26 +2,30 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Twinsland - Sélection de ville</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Twinsland Map</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="menu-bar">
-    <div class="ville-dropdown" id="villeDropdown">
-      Sélectionner une ville
-      <ul class="ville-options" id="villeOptions"></ul>
-    </div>
+  <h1>Bienvenue à Twinsland</h1>
 
-    <div class="music-player">
-      <span id="musicTitle">Aucune musique</span>
-      <button id="playPauseBtn">Play</button>
-    </div>
+  <div class="ville-dropdown" id="villeDropdown">
+    Sélectionner une ville
+    <ul class="ville-options" id="villeOptions"></ul>
   </div>
 
-  <div id="map" style="height: 90vh; width: 100%;"></div>
+  <div id="mapContainer">
+    <img src="assets/images/map-benin.png" alt="Carte du Bénin" id="beninMap" />
+    <div id="villeMarkers"></div>
+  </div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <div class="music-player">
+    <p id="titreMusique">🎵 Cliquez pour écouter</p>
+    <audio id="lecteurMusique" controls>
+      Votre navigateur ne prend pas en charge l'audio.
+    </audio>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
