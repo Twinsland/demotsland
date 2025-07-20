@@ -232,64 +232,59 @@ body {
   100% { opacity: 0; }
 }
 
-/* Style menu ville façon jeu vidéo */
+/* Conteneur du menu positionné sur la carte */
 #ville-menu-container {
-  position: relative;
-  margin: 20px auto;
-  width: fit-content;
-  z-index: 99;
-}
-
-#ville-menu-toggle {
-  background: linear-gradient(145deg, #0a0a15, #1c1c30);
-  border: 2px solid gold;
-  border-radius: 12px;
-  padding: 12px 20px;
-  color: gold;
-  cursor: pointer;
-  font-size: 1.1em;
-  user-select: none;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-  transition: all 0.3s ease;
-}
-
-#ville-menu-toggle:hover {
-  background: #1a1a2e;
-}
-
-.ville-list {
   position: absolute;
-  top: 110%;
-  left: 0;
-  right: 0;
-  background: #1b1b2b;
-  border-radius: 0 0 12px 12px;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  width: 200px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Bouton "Sélectionner une ville" */
+#ville-menu-toggle {
+  padding: 12px;
+  cursor: pointer;
+  background: #333;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Liste des villes cachée au départ */
+.ville-list {
+  list-style: none;
   margin: 0;
   padding: 0;
-  list-style: none;
   max-height: 0;
-  opacity: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
 }
 
+/* Affichage de la liste en cascade */
 #ville-menu-container.open .ville-list {
   max-height: 500px;
   opacity: 1;
 }
 
+/* Style des éléments de la liste */
 .ville-list li {
-  padding: 10px 20px;
-  border-top: 1px solid rgba(255, 215, 0, 0.1);
-  color: gold;
+  padding: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
-  transition: background 0.3s ease;
 }
 
 .ville-list li:hover {
-  background: #292950;
-  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
 }
+
 
 .header-text h1 {
   font-size: 2em;
