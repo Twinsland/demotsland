@@ -214,8 +214,8 @@ body {
 
 /* Effet flash léger style caméra */
 .flash-effect {
-  position: absolute;
-  top: -10;
+  position: fixed;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
@@ -235,10 +235,10 @@ body {
 /* Conteneur du menu positionné sur la carte */
 #ville-menu-container {
   position: absolute;
-  top: 90px;
+  top: 120px;
   left: 20px;
   z-index: 1000;
-  width: 200px;
+  width: 205px;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 8px;
   overflow: hidden;
