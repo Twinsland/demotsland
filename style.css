@@ -232,57 +232,50 @@ body {
   100% { opacity: 0; }
 }
 
-/* Conteneur du menu positionné sur la carte */
-#ville-menu-container {
+/* Conteneur du menu cascade positionné sur la carte */
+.ville-menu {
   position: absolute;
-  top: 160px;
-  left: 20px;
+  top: 15px;
+  left: 15px;
   z-index: 1000;
-  width: 220px;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  box-shadow: 0 0 10px gold;
   overflow: hidden;
-  transition: all 0.3s ease;
-  color: white;
-  font-family: 'Segoe UI', sans-serif;
+  transition: max-height 0.3s ease;
+  max-height: 40px;
 }
 
-/* Bouton "Sélectionner une ville" */
+.ville-menu.open {
+  max-height: 300px;
+}
+
 #ville-menu-toggle {
-  padding: 12px;
-  cursor: pointer;
-  background: #333;
-  text-align: center;
+  background: gold;
+  border: none;
+  padding: 10px;
   font-weight: bold;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  cursor: pointer;
 }
 
-/* Liste des villes cachée au départ */
-.ville-list {
+#ville-list {
   list-style: none;
   margin: 0;
   padding: 0;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
+  max-height: 250px;
+  overflow-y: auto;
 }
 
-/* Affichage de la liste en cascade */
-#ville-menu-container.open .ville-list {
-  max-height: 500px;
-  opacity: 1;
-}
-
-/* Style des éléments de la liste */
-.ville-list li {
-  padding: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+#ville-list li {
+  padding: 8px 10px;
   cursor: pointer;
+  border-top: 1px solid #ddd;
+  background: #fff;
 }
 
-.ville-list li:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+#ville-list li:hover {
+  background: #f5f5f5;
 }
 
 
