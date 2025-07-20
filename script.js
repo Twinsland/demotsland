@@ -72,64 +72,68 @@ musicPlayer.addEventListener("click", () => {
   musicPlayer.classList.toggle("open");
 });
 
-// Menu cascade
 document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.getElementById('ville-menu-toggle');
   const villeList = document.getElementById('ville-list');
   const menuContainer = document.getElementById('ville-menu-container');
 
+  const villeMenu = menuContainer;
+  const villeOptions = villeList;
+
   menuToggle.addEventListener('click', () => {
-    menuContainer.classList.toggle('open');
+    villeMenu.classList.toggle('open');
   });
 
-  // Afficher la silhouette du Bénin à partir du GeoJSON
-fetch("data/benin.geojson")
-  .then(response => response.json())
-  .then(data => {
-    L.geoJSON(data, {
-      style: {
-        color: "gold",
-        weight: 2,
-        fillColor: "rgba(255, 215, 0, 0.3)",
-        fillOpacity: 0.4
-      }
-    }).addTo(map);
-  })
-  .catch(error => {
-    console.error("Erreur lors du chargement du fichier GeoJSON du Bénin :", error);
-  });
-
-  fetch("data/villes.json")
-  .then(response => response.json())
-  .then(data => {
-    data.forEach(ville => {
-      if (ville.lat && ville.lng) {
-        const marker = L.marker([ville.lat, ville.lng], {
-          icon: goldIcon
-        }).addTo(map);
-
-        marker.bindPopup(`
-          <div style="color: gold;">
-            <strong>${ville.nom}</strong><br>
-            ${ville.infos}
-          </div>
-        `);
-
-        // Ajouter la ville au menu déroulant
-        const li = document.createElement("li");
-        li.textContent = ville.nom;
-        li.addEventListener("click", () => {
-          map.setView([ville.lat, ville.lng], 13);
-          marker.openPopup();
-          flashMap([ville.lat, ville.lng]);
-          villeMenu.classList.remove("open");
-        });
-        villeOptions.appendChild(li);
-      } else {
-        console.warn(`Coordonnées manquantes pour la ville : ${ville.nom}`);
-      }
+  // Affichage silhouette GeoJSON
+  fetch("data/benin.geojson")
+    .then(response => response.json())
+    .then(data => {
+      L.geoJSON(data, {
+        style: {
+          color: "gold",
+          weight: 2,
+          fillColor: "rgba(255, 215, 0, 0.3)",
+          fillOpacity: 0.4
+        }
+      }).addTo(map);
+    })
+    .catch(error => {
+      console.error("Erreur lors du chargement du fichier GeoJSON du Bénin :", error);
     });
-  })
-  .catch(error => {
-    console.error("Erreur lors du chargement des villes :", error);
-  });
+
+  // Affichage des villes
+  fetch("data/villes.json")
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(ville => {
+        if (ville.lat && ville.lng) {
+          const marker = L.marker([ville.lat, ville.lng], {
+            icon: goldIcon
+          }).addTo(map);
+
+          marker.bindPopup(`
+            <div style="color: gold;">
+              <strong>${ville.nom}</strong><br>
+              ${ville.infos}
+            </div>
+          `);
+
+          // Ajouter au menu
+          const li = document.createElement("li");
+          li.textContent = ville.nom;
+          li.addEventListener("click", () => {
+            map.setView([ville.lat, ville.lng], 13);
+            marker.openPopup();
+            triggerFlash();
+            villeMenu.classList.remove("open");
+          });
+          villeOptions.appendChild(li);
+        } else {
+          console.warn(`Coordonnées manquantes pour la ville : ${ville.nom}`);
+        }
+      });
+    })
+    .catch(error => {
+      console.error("Erreur lors du chargement des villes :", error);
+    });
+});
